@@ -184,6 +184,18 @@ def run_script_in_conda(
     cmd = ["conda", "run", "-n", env_name, "python", *args]
     return subprocess.run(cmd, **kwargs)
 
+def run_script_in_docker(
+    rust_file: str, docker_image: str, **kwargs
+) -> subprocess.CompletedProcess:
+    
+    run_cmd = [
+        "docker", "run", "--rm",
+        docker_image,
+        "mkdir", "-p", "src/bin",
+        "mv", rust_file, "src/bin/reproducer.rs"
+        "cargo", "run", "--bin", "reproducer",
+    ]
+    return subprocess.run(run_cmd,**kwargs)
 
 def run_string_cmd_in_conda(
     command: str, env_name: str, **kwargs

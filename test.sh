@@ -1,0 +1,3 @@
+# PYTHONPATH=. python app/main.py github-issue --output-dir output --setup-dir setup --model gpt-4o-2024-05-13 --model-temperature 0.2 --task-id ratatui__ratatui-518 --clone-link https://github.com/ratatui/ratatui.git --commit-hash c5ea656385843c880b3bef45dccbe8ea57431d10 --issue-link https://github.com/ratatui/ratatui/issues/499
+
+PYTHONPATH=. python app/main.py rust-bench --model gpt-4o-2024-05-13 --setup-map /home/riv3r/auto-code-rover/SWE-bench/setup_result/setup_map.json --tasks-map /home/riv3r/auto-code-rover/SWE-bench/setup_result/tasks_map.json --output-dir output --task ratatui__ratatui-518

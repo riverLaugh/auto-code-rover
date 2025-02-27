@@ -9,7 +9,7 @@ import requests
 
 from app import utils as app_utils
 from app.log import log_and_print
-from app.task import PlainTask, SweTask, Task
+from app.task import PlainTask, SweTask, Task, RustTask
 
 
 class RawTask(ABC):
@@ -25,6 +25,52 @@ class RawTask(ABC):
     @abstractmethod
     def dump_meta_data(self, output_dir: str) -> None:
         raise NotImplementedError("abstract base class")
+
+
+class RawRustTask(RawTask):
+    """
+    Encapsulate everything required to run one task.
+    """
+
+    def __init__(self, task_id: str, setup_info: dict, task_info: dict):
+        # the instance id from SWE-bench
+        self._task_id = task_id
+        # setup_info (Dict): keys: ['repo_path', 'env_name', 'pre_install', 'install','test_cmd']
+        self.setup_info = setup_info
+        # task_info (Dict): keys: ['base_commit', 'hints_text', 'created_at',
+        # 'test_patch', 'repo', 'problem_statement', 'version', 'instance_id',
+        # 'FAIL_TO_PASS', 'PASS_TO_PASS', 'environment_setup_commit']
+        self.task_info = task_info
+
+    def dump_meta_data(self, output_dir):
+        return None
+
+
+    @property
+    def task_id(self) -> str:
+        return self._task_id
+
+    def to_task(self) -> RustTask:
+        task_id = self.task_id
+        setup_info = self.setup_info
+        task_info = self.task_info
+        return RustTask(
+            task_id=task_id,
+            problem_statement=task_info["problem_statement"],
+            repo_path=setup_info["repo_path"],
+            docker_image_name=setup_info["docker_image"],
+            # pre_install_cmds=setup_info["pre_install"],
+            # install_cmd=setup_info["install"],
+            # command to run the relevant tests,
+            # test_cmd=setup_info["test_cmd"],
+            # commit=task_info["base_commit"],
+            # repo_name=task_info["repo"],
+            # repo_version=task_info["version"],
+            # modifications to the test suite for this task instance,
+            # test_patch=task_info["test_patch"],
+            # testcases_passing=task_info["PASS_TO_PASS"],
+            # testcases_failing=task_info["FAIL_TO_PASS"],
+        )
 
 
 class RawSweTask(RawTask):
@@ -166,8 +212,13 @@ class RawGithubTask(RawTask):
         _, owner, repo, _, issue_number = issue_url.rsplit("/", 4)
 
         api_url = f"https://api.github.com/repos/{owner}/{repo}/issues/{issue_number}"
-        response = requests.get(api_url)
-
+        github_token = os.getenv("GITHUB_TOKEN")
+        header = {
+            'Authorization': f'Bearer {github_token}'
+            
+        }
+        response = requests.get(api_url,headers=header)
+        print(response.json)
         if response.status_code != 200:
             raise RuntimeError(
                 f"Failed to fetch issue information: {response.status_code}"

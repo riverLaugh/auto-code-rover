@@ -1,0 +1,3312 @@
+{
+    "PRQL__prql-4931": [
+        "cd \"prqlc/prqlc\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "PRQL__prql-3846": [
+        "cd \"prqlc/prql-compiler\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "PRQL__prql-218": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "cloudflare__quiche-615": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "metalbear-co__mirrord-1527": [
+        "cd \"mirrord/agent\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"tests\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "metalbear-co__mirrord-2665": [
+        "cd \"mirrord/config\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "metalbear-co__mirrord-2668": [
+        "cd \"mirrord/config\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "metalbear-co__mirrord-2273": [
+        "cd \"mirrord/config\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"mirrord/kube\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "metalbear-co__mirrord-2247": [
+        "cd \"mirrord/config\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "metalbear-co__mirrord-2699": [
+        "cd \"mirrord/agent\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"mirrord/config\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "metalbear-co__mirrord-2165": [
+        "cd \"mirrord/config\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "metalbear-co__mirrord-2589": [
+        "cd \"mirrord/config\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "metalbear-co__mirrord-1623": [
+        "cd \"mirrord/config\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "ast-grep__ast-grep-789": [
+        "cd \"crates/cli\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "ast-grep__ast-grep-1323": [
+        "cd \"crates/cli\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "ast-grep__ast-grep-1083": [
+        "cd \"crates/config\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "ast-grep__ast-grep-1242": [
+        "cd \"crates/core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "ast-grep__ast-grep-428": [
+        "cd \"crates/core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "ast-grep__ast-grep-1588": [
+        "cd \"crates/cli\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "ast-grep__ast-grep-1636": [
+        "cd \"crates/cli\"",
+        "cargo test --no-fail-fast --all-features --test \"scan_test\"",
+        "cd ../../"
+    ],
+    "ast-grep__ast-grep-798": [
+        "cd \"crates/cli\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "ast-grep__ast-grep-1086": [
+        "cd \"crates/config\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"crates/core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "moka-rs__moka-60": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "moka-rs__moka-156": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "bitshifter__glam-rs-548": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "atuinsh__atuin-2058": [
+        "cd \"crates/atuin-history\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "atuinsh__atuin-2395": [
+        "cd \"crates/atuin\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "rust-lang__rustfmt-5369": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-lang__rustfmt-5262": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-lang__rustfmt-5372": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-lang__rustfmt-6425": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-2342": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-1787": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-1790": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-898": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-2005": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-749": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-1402": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-2353": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-1384": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-933": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-2290": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-992": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-1006": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-2233": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-2454": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-1611": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-723": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-2055": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-1917": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-2440": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-377": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-2024": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-1390": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-1367": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-1139": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-376": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-2056": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-2510": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gfx-rs__naga-1993": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "nical__lyon-579": [
+        "cd \"tessellation\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "nical__lyon-570": [
+        "cd \"tessellation\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "nical__lyon-530": [
+        "cd \"tessellation\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "nical__lyon-503": [
+        "cd \"path\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "nical__lyon-519": [
+        "cd \"tessellation\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "nical__lyon-520": [
+        "cd \"tessellation\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "cberner__redb-223": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "cberner__redb-308": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "cberner__redb-287": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "arxanas__git-branchless-1013": [
+        "cd \"scm-record\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "crate-ci__typos-412": [
+        "cd \"crates/typos\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "crate-ci__typos-293": [
+        "cd \"crates/typos\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "crate-ci__typos-463": [
+        "cd \"crates/typos\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "crate-ci__typos-486": [
+        "cd \"crates/typos\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "crate-ci__typos-434": [
+        "cd \"crates/typos\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "crate-ci__typos-410": [
+        "cd \"crates/typos\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "crate-ci__typos-279": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "crate-ci__typos-543": [
+        "cd \"crates/typos\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "crate-ci__typos-345": [
+        "cd \"crates/typos\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "crate-ci__typos-254": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "crate-ci__typos-776": [
+        "cd \"crates/typos-dict\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "console-rs__indicatif-141": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "console-rs__indicatif-402": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "console-rs__indicatif-414": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dtolnay__anyhow-47": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dtolnay__anyhow-34": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "artichoke__artichoke-2416": [
+        "cd \"spinoso-time\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "artichoke__artichoke-2073": [
+        "cd \"spinoso-time\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "linebender__resvg-586": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "nushell__nushell-10405": [
+        "cd \"crates/nu-parser\"",
+        "cargo test --no-fail-fast --all-features --test \"test_parser\"",
+        "cd ../../",
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "nushell__nushell-14475": [
+        "cd \"crates/nu-command\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "nushell__nushell-6129": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "nushell__nushell-9309": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "nushell__nushell-7897": [
+        "cd \"crates/nu-command\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "nushell__nushell-7777": [
+        "cd \"crates/nu-command\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "nushell__nushell-11008": [
+        "cd \"crates/nu-cli\"",
+        "cargo test --no-fail-fast --all-features --test \"completions\"",
+        "cd ../../"
+    ],
+    "nushell__nushell-8919": [
+        "cd \"crates/nu-cli\"",
+        "cargo test --no-fail-fast --all-features --test \"completions\"",
+        "cd ../../"
+    ],
+    "nushell__nushell-5779": [
+        "cd \"crates/nu-parser\"",
+        "cargo test --no-fail-fast --all-features --test \"test_parser\"",
+        "cd ../../"
+    ],
+    "nushell__nushell-5137": [
+        "cd \"crates/nu-command\"",
+        "cargo test --no-fail-fast --all-features --test \"main\"",
+        "cd ../../",
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "nushell__nushell-12438": [
+        "cd \"crates/nu-cli\"",
+        "cargo test --no-fail-fast --all-features --test \"completions\"",
+        "cd ../../"
+    ],
+    "nushell__nushell-5111": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "nushell__nushell-5932": [
+        "cd \"crates/nu-command\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "nushell__nushell-14095": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "nushell__nushell-13447": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "nushell__nushell-9722": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "nushell__nushell-13725": [
+        "cd \"crates/nu-cli\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"crates/nu-path\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "nushell__nushell-8953": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "nushell__nushell-11030": [
+        "cd \"crates/nu-parser\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "nushell__nushell-9502": [
+        "cd \"crates/nu-protocol\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "nushell__nushell-7119": [
+        "cd \"crates/nu-parser\"",
+        "cargo test --no-fail-fast --all-features --test \"test_parser\"",
+        "cd ../../"
+    ],
+    "nushell__nushell-8940": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "nushell__nushell-14074": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "nushell__nushell-8151": [
+        "cd \"crates/nu-parser\"",
+        "cargo test --no-fail-fast --all-features --test \"test_lex\"",
+        "cd ../../"
+    ],
+    "tokio-rs__bytes-732": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "tokio-rs__bytes-560": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "tokio-rs__bytes-721": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dtolnay__proc-macro2-236": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-random__rand-711": [
+        "export RUSTFLAGS=\"-Awarnings -Auseless_deprecated\" && cargo test --all --no-fail-fast"
+    ],
+    "rust-random__rand-1000": [
+        "export RUSTFLAGS=\"-Awarnings -Auseless_deprecated\" && cargo test --all --no-fail-fast"
+    ],
+    "bitflags__bitflags-355": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "bitflags__bitflags-316": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "bitflags__bitflags-345": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "bitflags__bitflags-341": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "bitflags__bitflags-276": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "bitflags__bitflags-266": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "bitflags__bitflags-211": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "bitflags__bitflags-281": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "bitflags__bitflags-268": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "kkawakam__rustyline-646": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "kkawakam__rustyline-511": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "kkawakam__rustyline-296": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "kkawakam__rustyline-750": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "kkawakam__rustyline-706": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "watchexec__cargo-watch-177": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-bakery__nom-1032": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "JohnnyMorganz__StyLua-926": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "JohnnyMorganz__StyLua-916": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "JohnnyMorganz__StyLua-631": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "JohnnyMorganz__StyLua-666": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "JohnnyMorganz__StyLua-422": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "JohnnyMorganz__StyLua-852": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "JohnnyMorganz__StyLua-931": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "clockworklabs__SpacetimeDB-1894": [
+        "cd \"crates/bindings\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"modules/rust-wasm-test\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "apache__horaedb-658": [
+        "cd \"analytic_engine\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "apache__horaedb-790": [
+        "cd \"components/object_store\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "latex-lsp__texlab-1291": [
+        "cd \"crates/parser\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "latex-lsp__texlab-1251": [
+        "cd \"crates/symbols\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "latex-lsp__texlab-1211": [
+        "cd \"crates/diagnostics\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "pkolaczk__fclones-149": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "pkolaczk__fclones-181": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "GitoxideLabs__gitoxide-1462": [
+        "cd \"gix-attributes\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"gix-dir\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"gix-ignore\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"gix\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "GitoxideLabs__gitoxide-604": [
+        "cd \"git-object\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "GitoxideLabs__gitoxide-1736": [
+        "cd \"gix-status/tests\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "dandavison__delta-425": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dandavison__delta-1840": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dandavison__delta-323": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dandavison__delta-605": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dandavison__delta-1158": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dandavison__delta-975": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dandavison__delta-710": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dandavison__delta-1003": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dandavison__delta-1057": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dandavison__delta-403": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dandavison__delta-668": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dandavison__delta-1111": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dandavison__delta-581": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "restatedev__restate-1129": [
+        "cd \"crates/service-protocol\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "restatedev__restate-1532": [
+        "cd \"crates/network\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "libreddit__libreddit-732": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "libreddit__libreddit-461": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-cli__config-rs-486": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-cli__config-rs-353": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-cli__config-rs-184": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-cli__config-rs-465": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-cli__config-rs-620": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-cli__config-rs-119": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-cli__config-rs-554": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-scraper__scraper-187": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-scraper__scraper-213": [
+        "cd \"scraper\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "rust-lang__cc-rs-1181": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-lang__cc-rs-991": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-lang__cc-rs-1279": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-lang__cc-rs-1212": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-lang__cc-rs-1295": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "cross-rs__cross-1022": [
+        "cd \"xtask\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "cross-rs__cross-1183": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "cross-rs__cross-890": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "cross-rs__cross-781": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "cross-rs__cross-1432": [
+        "cd \"xtask\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "rust-lang__regex-863": [
+        "./test"
+    ],
+    "rust-lang__regex-641": [
+        "./test"
+    ],
+    "rust-lang__regex-1111": [
+        "./test"
+    ],
+    "rust-lang__regex-752": [
+        "./test"
+    ],
+    "rust-lang__regex-1000": [
+        "./test"
+    ],
+    "rust-lang__regex-879": [
+        "./test"
+    ],
+    "rust-lang__regex-970": [
+        "./test"
+    ],
+    "rust-lang__regex-1063": [
+        "./test"
+    ],
+    "rust-lang__regex-1072": [
+        "./test"
+    ],
+    "rust-lang__regex-984": [
+        "./test"
+    ],
+    "rust-lang__regex-637": [
+        "./test"
+    ],
+    "aya-rs__aya-656": [
+        "cd \"aya-obj\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"aya\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"test/integration-test\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "async-graphql__async-graphql-1524": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "async-graphql__async-graphql-1559": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "async-graphql__async-graphql-1228": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "async-graphql__async-graphql-1542": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "salvo-rs__salvo-25": [
+        "cd \"core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "salvo-rs__salvo-784": [
+        "cd \"crates/oapi-macros\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"crates/oapi\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "salvo-rs__salvo-844": [
+        "cd \"crates/core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"crates/oapi\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"crates/serve-static\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "salvo-rs__salvo-785": [
+        "cd \"crates/oapi-macros\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "tikv__raft-rs-58": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "hannobraun__fornjot-1369": [
+        "cd \"crates/fj-kernel\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "hannobraun__fornjot-278": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "lycheeverse__lychee-1546": [
+        "cd \"lychee-bin\"",
+        "cargo test --no-fail-fast --all-features --test \"cli\"",
+        "cd ../",
+        "cd \"lychee-lib\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "lycheeverse__lychee-1547": [
+        "cd \"lychee-bin\"",
+        "cargo test --no-fail-fast --all-features --test \"cli\"",
+        "cd ../"
+    ],
+    "linkerd__linkerd2-proxy-2237": [
+        "cd \"linkerd/app/integration\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../../",
+        "cd \"linkerd/app/outbound\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../../"
+    ],
+    "jtroo__kanata-664": [
+        "cd \"keyberon\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"parser\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "casey__just-656": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-909": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-2112": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-2497": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-2065": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-2353": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-2329": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-1809": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-2462": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-2180": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-1393": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-1833": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-1116": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-775": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-2116": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-2276": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-1506": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-2151": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-2069": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "casey__just-2128": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-lang__futures-rs-712": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-lang__futures-rs-1241": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "obi1kenobi__trustfall-350": [
+        "cd \"trustfall_core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "GuillaumeGomez__sysinfo-681": [
+        "cargo test --no-fail-fast"
+    ],
+    "GuillaumeGomez__sysinfo-835": [
+        "cargo test --no-fail-fast"
+    ],
+    "GuillaumeGomez__sysinfo-679": [
+        "cargo test --no-fail-fast"
+    ],
+    "GuillaumeGomez__sysinfo-509": [
+        "cargo test --no-fail-fast"
+    ],
+    "GuillaumeGomez__sysinfo-367": [
+        "cargo test --no-fail-fast"
+    ],
+    "GuillaumeGomez__sysinfo-245": [
+        "cargo test --no-fail-fast"
+    ],
+    "GuillaumeGomez__sysinfo-1161": [
+        "cargo test --no-fail-fast"
+    ],
+    "GuillaumeGomez__sysinfo-887": [
+        "cargo test --no-fail-fast"
+    ],
+    "amethyst__legion-96": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "huggingface__candle-2568": [
+        "cd \"candle-onnx\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "bevyengine__bevy-13271": [
+        "cd \"crates/bevy_reflect\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-9046": [
+        "cd \"crates/bevy_reflect\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"crates/bevy_reflect_compile_fail_tests\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-13762": [
+        "cd \"crates/bevy_app\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-7575": [
+        "cd \"crates/bevy_reflect\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-9895": [
+        "cd \"crates/bevy_asset\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"crates/bevy_ecs\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-8014": [
+        "cd \"crates/bevy_reflect_compile_fail_tests\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-13817": [
+        "cd \"crates/bevy_app\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-7951": [
+        "cd \"crates/bevy_scene\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-13706": [
+        "cd \"crates/bevy_reflect\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-13848": [
+        "cd \"crates/bevy_state\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-13886": [
+        "cd \"crates/bevy_ecs\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-9253": [
+        "cd \"crates/bevy_ecs\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-12816": [
+        "cd \"crates/bevy_ui\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-9551": [
+        "cd \"crates/bevy_macros_compile_fail_tests\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-8040": [
+        "cd \"crates/bevy_render\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-15174": [
+        "cd \"crates/bevy_reflect\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"crates/bevy_scene\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-12574": [
+        "cd \"crates/bevy_math\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-10627": [
+        "cd \"crates/bevy_ecs\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-12778": [
+        "cd \"crates/bevy_scene\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-12738": [
+        "cd \"crates/bevy_sprite\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-10103": [
+        "cd \"crates/bevy_reflect\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-10211": [
+        "cd \"crates/bevy_ecs\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-13691": [
+        "cd \"crates/bevy_reflect\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-7264": [
+        "cd \"crates/bevy_transform\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bevyengine__bevy-14148": [
+        "cd \"crates/bevy_sprite\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "LukeMathWalker__cargo-chef-171": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "hyperium__tonic-395": [
+        "cd \"tonic\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "boa-dev__boa-235": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "boa-dev__boa-3508": [
+        "cd \"core/engine\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"core/gc\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "boa-dev__boa-58": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "boa-dev__boa-138": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "boa-dev__boa-156": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "boa-dev__boa-245": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "boa-dev__boa-199": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "boa-dev__boa-3172": [
+        "cd \"boa_parser\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "solidiquis__erdtree-47": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "jj-vcs__jj-800": [
+        "cd \"lib\"",
+        "cargo test --no-fail-fast --all-features --test \"test_revset\"",
+        "cd ../"
+    ],
+    "jj-vcs__jj-2433": [
+        "cd \"cli\"",
+        "cargo test --no-fail-fast --all-features --test \"test_checkout\"",
+        "cargo test --no-fail-fast --all-features --test \"test_commit_template\"",
+        "cargo test --no-fail-fast --all-features --test \"test_restore_command\"",
+        "cargo test --no-fail-fast --all-features --test \"test_undo\"",
+        "cargo test --no-fail-fast --all-features --test \"test_workspaces\"",
+        "cd ../"
+    ],
+    "jj-vcs__jj-2206": [
+        "cd \"cli\"",
+        "cargo test --no-fail-fast --all-features --test \"test_branch_command\"",
+        "cd ../",
+        "cd \"lib\"",
+        "cargo test --no-fail-fast --all-features --test \"test_git\"",
+        "cd ../"
+    ],
+    "jj-vcs__jj-794": [
+        "cd \"lib\"",
+        "cargo test --no-fail-fast --all-features --test \"test_git\"",
+        "cargo test --no-fail-fast --all-features --test \"test_init\"",
+        "cargo test --no-fail-fast --all-features --test \"test_working_copy\"",
+        "cd ../",
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "jj-vcs__jj-106": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "jj-vcs__jj-1849": [
+        "cd \"lib\"",
+        "cargo test --no-fail-fast --all-features --test \"test_git\"",
+        "cargo test --no-fail-fast --all-features --test \"test_revset\"",
+        "cd ../"
+    ],
+    "jj-vcs__jj-123": [
+        "cd \"lib\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "jj-vcs__jj-180": [
+        "cd \"lib\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "jj-vcs__jj-116": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "jj-vcs__jj-105": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "jj-vcs__jj-624": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "jj-vcs__jj-115": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "jj-vcs__jj-2330": [
+        "cd \"cli\"",
+        "cargo test --no-fail-fast --all-features --test \"test_git_colocated\"",
+        "cd ../",
+        "cd \"lib\"",
+        "cargo test --no-fail-fast --all-features --test \"test_git\"",
+        "cd ../"
+    ],
+    "tweag__nickel-1296": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "tweag__nickel-1272": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "tweag__nickel-979": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "wez__wezterm-4764": [
+        "cd \"vtparse\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "Peternator7__strum-288": [
+        "cd \"strum_tests\"",
+        "cargo test --no-fail-fast --all-features --test \"enum_discriminants\"",
+        "cd ../"
+    ],
+    "Peternator7__strum-268": [
+        "cd \"strum_tests\"",
+        "cargo test --no-fail-fast --all-features --test \"enum_count\"",
+        "cd ../"
+    ],
+    "MitMaro__git-interactive-rebase-tool-926": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "crossbeam-rs__crossbeam-1101": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cd ./crossbeam-skiplist",
+        "cargo test --no-fail-fast --test map",
+        "cargo test --no-fail-fast --test set",
+        "cd ../"
+    ],
+    "crossbeam-rs__crossbeam-552": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cd ./crossbeam-epoch",
+        "cargo test --no-fail-fast ",
+        "cd ../"
+    ],
+    "crossbeam-rs__crossbeam-454": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cd ./crossbeam-utils",
+        "cargo test --no-fail-fast --test atomic_cell",
+        "cd ../"
+    ],
+    "pest-parser__pest-341": [
+        "cd \"pest\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "sharkdp__bat-2698": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__bat-1556": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__bat-337": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__bat-2856": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__bat-1019": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__bat-2393": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__bat-1440": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__bat-1017": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "parcel-bundler__lightningcss-885": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "BurntSushi__quickcheck-185": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rust-lang__rustlings-599": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sigoden__dufs-179": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sigoden__dufs-177": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "chmln__sd-115": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mozilla__sccache-1157": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mozilla__sccache-1547": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mozilla__sccache-1724": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mikaelmello__inquire-156": [
+        "cd \"inquire\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "mikaelmello__inquire-197": [
+        "cd \"inquire\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "mikaelmello__inquire-240": [
+        "cd \"inquire\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "roc-lang__roc-5179": [
+        "cd \"crates/compiler/derive\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../../",
+        "cd \"crates/compiler/test_derive\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../../",
+        "cd \"crates/compiler/test_gen\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../../",
+        "cd \"crates/reporting\"",
+        "cargo test --no-fail-fast --all-features --test \"test_reporting\"",
+        "cd ../../"
+    ],
+    "roc-lang__roc-6054": [
+        "cd \"crates/compiler/load\"",
+        "cargo test --no-fail-fast --all-features --test \"test_reporting\"",
+        "cd ../../../"
+    ],
+    "roc-lang__roc-5287": [
+        "cd \"crates/reporting\"",
+        "cargo test --no-fail-fast --all-features --test \"test_reporting\"",
+        "cd ../../"
+    ],
+    "roc-lang__roc-6794": [
+        "cd \"crates/compiler/load\"",
+        "cargo test --no-fail-fast --all-features --test \"test_reporting\"",
+        "cd ../../../"
+    ],
+    "roc-lang__roc-6525": [
+        "cd \"crates/cli\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"crates/compiler/load\"",
+        "cargo test --no-fail-fast --all-features --test \"test_reporting\"",
+        "cd ../../../",
+        "cd \"crates/compiler/load_internal\"",
+        "cargo test --no-fail-fast --all-features --test \"test_load\"",
+        "cd ../../../",
+        "cd \"crates/repl_test\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"crates/reporting\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "roc-lang__roc-6847": [
+        "cd \"crates/compiler/can\"",
+        "cargo test --no-fail-fast --all-features --test \"test_suffixed\"",
+        "cd ../../../"
+    ],
+    "roc-lang__roc-6057": [
+        "cd \"crates/compiler/load\"",
+        "cargo test --no-fail-fast --all-features --test \"test_reporting\"",
+        "cd ../../../"
+    ],
+    "roc-lang__roc-6926": [
+        "cd \"crates/compiler/test_syntax\"",
+        "cargo test --no-fail-fast --all-features --test \"test_fmt\"",
+        "cd ../../../"
+    ],
+    "roc-lang__roc-7004": [
+        "cd \"crates/compiler/test_syntax\"",
+        "cargo test --no-fail-fast --all-features --test \"test_fmt\"",
+        "cd ../../../"
+    ],
+    "roc-lang__roc-6785": [
+        "cd \"crates/compiler/can\"",
+        "cargo test --no-fail-fast --all-features --test \"test_suffixed\"",
+        "cd ../../../"
+    ],
+    "roc-lang__roc-5994": [
+        "cd \"crates/compiler/load\"",
+        "cargo test --no-fail-fast --all-features --test \"test_reporting\"",
+        "cd ../../../",
+        "cd \"crates/repl_test\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "roc-lang__roc-6506": [
+        "cd \"crates/compiler/load_internal\"",
+        "cargo test --no-fail-fast --all-features --test \"test_load\"",
+        "cd ../../../"
+    ],
+    "roc-lang__roc-5280": [
+        "cd \"crates/reporting\"",
+        "cargo test --no-fail-fast --all-features --test \"test_reporting\"",
+        "cd ../../"
+    ],
+    "roc-lang__roc-6786": [
+        "cd \"crates/compiler/can\"",
+        "cargo test --no-fail-fast --all-features --test \"test_suffixed\"",
+        "cd ../../../"
+    ],
+    "roc-lang__roc-6712": [
+        "cd \"crates/compiler/can\"",
+        "cargo test --no-fail-fast --all-features --test \"test_suffixed\"",
+        "cd ../../../"
+    ],
+    "roc-lang__roc-6837": [
+        "cd \"crates/compiler/can\"",
+        "cargo test --no-fail-fast --all-features --test \"test_suffixed\"",
+        "cd ../../../"
+    ],
+    "roc-lang__roc-5284": [
+        "cd \"crates/compiler/solve\"",
+        "cargo test --no-fail-fast --all-features --test \"solve_expr\"",
+        "cd ../../../",
+        "cd \"crates/compiler/test_solve_helpers\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../../",
+        "cd \"crates/compiler/uitest\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../../"
+    ],
+    "roc-lang__roc-5188": [
+        "cd \"crates/reporting\"",
+        "cargo test --no-fail-fast --all-features --test \"test_reporting\"",
+        "cd ../../"
+    ],
+    "roc-lang__roc-6851": [
+        "cd \"crates/compiler/can\"",
+        "cargo test --no-fail-fast --all-features --test \"test_suffixed\"",
+        "cd ../../../"
+    ],
+    "XAMPPRocky__tokei-535": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "XAMPPRocky__tokei-868": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ratatui__ratatui-310": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ratatui__ratatui-911": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ratatui__ratatui-323": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ratatui__ratatui-1226": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ratatui__ratatui-518": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rome__tools-4732": [
+        "cd \"crates/rome_cli\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "rome__tools-4629": [
+        "cd \"crates/rome_cli\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "rome__tools-4618": [
+        "cd \"crates/rome_js_analyze\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "maplibre__martin-1355": [
+        "cd \"martin\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "sycamore-rs__sycamore-760": [
+        "cd \"packages/sycamore-macro\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "swc-project__swc-2447": [
+        "cd \"ecmascript/parser\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"ecmascript/transforms/react\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../../"
+    ],
+    "swc-project__swc-9631": [
+        "cd \"crates/swc_ecma_codegen\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "swc-project__swc-2053": [
+        "cd \"ecmascript/transforms/module\"",
+        "cargo test --no-fail-fast --all-features --test \"common_js\"",
+        "cd ../../../"
+    ],
+    "swc-project__swc-2227": [
+        "cd \"testing\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "swc-project__swc-2514": [
+        "cd \"ecmascript/transforms/module\"",
+        "cargo test --no-fail-fast --all-features --test \"common_js\"",
+        "cd ../../../"
+    ],
+    "starkware-libs__cairo-6720": [
+        "cd \"crates/cairo-lang-semantic\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "starkware-libs__cairo-4777": [
+        "cd \"crates/cairo-lang-sierra-generator\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "tafia__calamine-402": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "tafia__calamine-277": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "tafia__calamine-31": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "cloudflare__pingora-211": [
+        "cd \"pingora-core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"pingora-limits\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"pingora-lru\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"tinyufo\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "cloudflare__pingora-219": [
+        "cd \"pingora-core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"pingora-limits\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"pingora-lru\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"tinyufo\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "Nukesor__pueue-583": [
+        "cd \"pueue\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "mitsuhiko__insta-281": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mitsuhiko__insta-169": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mitsuhiko__insta-160": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mitsuhiko__insta-139": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mitsuhiko__insta-32": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mitsuhiko__insta-172": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "Keats__tera-908": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "Keats__tera-623": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "Keats__tera-350": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "Keats__tera-703": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "Keats__tera-772": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "Keats__tera-744": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "Keats__tera-820": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "Keats__tera-508": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "trishume__syntect-530": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "trishume__syntect-506": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "trishume__syntect-456": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "trishume__syntect-148": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "trishume__syntect-170": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "actix__actix-web-3189": [
+        "cd \"actix-web\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "actix__actix-web-2794": [
+        "cd \"actix-http\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "actix__actix-web-2683": [
+        "cd \"actix-http\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "actix__actix-web-2684": [
+        "cd \"awc\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "actix__actix-web-2566": [
+        "cd \"actix-router\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__hyperfine-719": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gluesql__gluesql-81": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gluesql__gluesql-34": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gluesql__gluesql-48": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gluesql__gluesql-98": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gluesql__gluesql-40": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "gluesql__gluesql-67": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "evcxr__evcxr-274": [
+        "cd \"evcxr_repl\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "FuelLabs__fuels-rs-1249": [
+        "cd \"examples/codec\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"examples/contracts\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"examples/predicates\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"packages/fuels-code-gen\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"packages/fuels-core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"packages/fuels-programs\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"packages/fuels\"",
+        "cargo test --no-fail-fast --all-features --test \"bindings\"",
+        "cargo test --no-fail-fast --all-features --test \"configurables\"",
+        "cargo test --no-fail-fast --all-features --test \"contracts\"",
+        "cargo test --no-fail-fast --all-features --test \"from_token\"",
+        "cargo test --no-fail-fast --all-features --test \"predicates\"",
+        "cargo test --no-fail-fast --all-features --test \"scripts\"",
+        "cargo test --no-fail-fast --all-features --test \"types_predicates\"",
+        "cd ../../",
+        "cd \"packages/wasm-tests\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "quinn-rs__quinn-1837": [
+        "cd \"quinn-proto\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "quinn-rs__quinn-1869": [
+        "cd \"quinn-proto\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "moonrepo__moon-399": [
+        "cd \"crates/cli\"",
+        "cargo test --no-fail-fast --all-features --test \"check_test\"",
+        "cd ../../"
+    ],
+    "rinja-rs__askama-486": [
+        "cd \"testing\"",
+        "cargo test --no-fail-fast --all-features --test \"filters\"",
+        "cargo test --no-fail-fast --all-features --test \"simple\"",
+        "cd ../"
+    ],
+    "rinja-rs__askama-788": [
+        "cd \"testing\"",
+        "cargo test --no-fail-fast --all-features --test \"size_hint\"",
+        "cd ../"
+    ],
+    "rinja-rs__askama-861": [
+        "cd \"askama_parser\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "rinja-rs__askama-426": [
+        "cd \"askama_shared\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "rinja-rs__askama-1095": [
+        "cd \"askama_derive\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "rinja-rs__askama-652": [
+        "cd \"askama_shared\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "rinja-rs__askama-393": [
+        "cd \"askama_shared\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"testing\"",
+        "cargo test --no-fail-fast --all-features --test \"simple\"",
+        "cd ../"
+    ],
+    "rinja-rs__askama-391": [
+        "cd \"askama_shared\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "rinja-rs__askama-394": [
+        "cd \"testing\"",
+        "cargo test --no-fail-fast --all-features --test \"ws\"",
+        "cd ../"
+    ],
+    "rinja-rs__askama-399": [
+        "cd \"testing\"",
+        "cargo test --no-fail-fast --all-features --test \"matches\"",
+        "cargo test --no-fail-fast --all-features --test \"whitespace\"",
+        "cargo test --no-fail-fast --all-features --test \"ws\"",
+        "cd ../"
+    ],
+    "sharkdp__fd-866": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__fd-676": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__fd-569": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__fd-555": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__fd-1394": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__fd-1162": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__fd-479": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__fd-1137": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__fd-590": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sharkdp__fd-497": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ouch-org__ouch-118": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ouch-org__ouch-692": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "tauri-apps__tauri-11477": [
+        "cd \"crates/tauri-cli\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"crates/tauri\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"examples/api/src-tauri\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../../"
+    ],
+    "xd009642__tarpaulin-1206": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "pulldown-cmark__pulldown-cmark-820": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "pulldown-cmark__pulldown-cmark-930": [
+        "cd \"pulldown-cmark\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "pulldown-cmark__pulldown-cmark-829": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "pulldown-cmark__pulldown-cmark-925": [
+        "cd \"pulldown-cmark\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "pulldown-cmark__pulldown-cmark-822": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "serde-rs__serde-2802": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "serde-rs__serde-2562": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "FuelLabs__sway-4810": [
+        "cd \"sway-lsp\"",
+        "cargo test --no-fail-fast --all-features --test \"lib\"",
+        "cd ../"
+    ],
+    "FuelLabs__sway-6451": [
+        "cd \"swayfmt\"",
+        "cargo test --no-fail-fast --all-features --test \"mod\"",
+        "cd ../"
+    ],
+    "hatoo__oha-309": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "delta-io__delta-rs-2396": [
+        "cd \"crates/core\"",
+        "cargo test --no-fail-fast --all-features --test \"command_merge\"",
+        "cd ../../"
+    ],
+    "delta-io__delta-rs-2405": [
+        "cd \"crates/core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "bincode-org__bincode-336": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "bincode-org__bincode-217": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "bincode-org__bincode-198": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sagiegurari__cargo-make-1060": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sagiegurari__cargo-make-1066": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "graphql-rust__juniper-1289": [
+        "cd \"juniper_axum\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "graphql-rust__juniper-348": [
+        "cd \"juniper\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "fcsonline__drill-159": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "fcsonline__drill-178": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "asterinas__asterinas-1279": [
+        "cd /testbed/ostd ",
+        "cargo osdk test ",
+        "cd .."
+    ],
+    "asterinas__asterinas-1138": [
+        "cd /testbed/osdk ",
+        "cargo test --no-fail-fast --all-features",
+        "cd .."
+    ],
+    "asterinas__asterinas-1125": [
+        "cd /testbed/osdk ",
+        "cargo test --no-fail-fast --all-features",
+        "cd ..",
+        "cd /testbed/kernel ",
+        "cargo osdk test ",
+        "cd ..",
+        "cd /testbed/ostd/libs/ostd-test ",
+        "cargo test --no-fail-fast --all-features",
+        "cd ..",
+        "cd /testbed/ostd ",
+        "cargo osdk test ",
+        "cd .."
+    ],
+    "asterinas__asterinas-1026": [
+        "cd /testbed/osdk ",
+        "cargo test --no-fail-fast --all-features",
+        "cd ..",
+        "cd /testbed/kernel ",
+        "cargo osdk test ",
+        "cd ..",
+        "cd /testbed/ostd ",
+        "cargo osdk test ",
+        "cd .."
+    ],
+    "asterinas__asterinas-1328": [
+        "cd /testbed/osdk ",
+        "cargo test --no-fail-fast --all-features",
+        "cd ..",
+        "cd /testbed/kernel ",
+        "cargo osdk test ",
+        "cd ..",
+        "cd /testbed/ostd ",
+        "cargo osdk test ",
+        "cd .."
+    ],
+    "sigoden__aichat-830": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "sigoden__aichat-1056": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-2785": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-3839": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-2569": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-2994": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-2702": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-3536": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-2782": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-2973": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-2456": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-6310": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-3349": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-3569": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-3753": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-3359": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-3750": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-4689": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-2613": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-5081": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-4008": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "starship__starship-6314": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rayon-rs__rayon-986": [
+        "cargo test --all --no-fail-fast --all-features"
+    ],
+    "BurntSushi__ripgrep-2885": [
+        "cd \"crates/regex\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "DioxusLabs__dioxus-2749": [
+        "cd \"packages/core\"",
+        "cargo test --no-fail-fast --all-features --test \"diff_unkeyed_list\"",
+        "cd ../../"
+    ],
+    "DioxusLabs__dioxus-2746": [
+        "cd \"packages/core\"",
+        "cargo test --no-fail-fast --all-features --test \"diff_dynamic_node\"",
+        "cd ../../"
+    ],
+    "Y2Z__monolith-321": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "kube-rs__kube-1281": [
+        "cd \"kube-core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "kube-rs__kube-1541": [
+        "cd \"kube-core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "kube-rs__kube-1324": [
+        "cd \"kube-runtime\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "epi052__feroxbuster-117": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "epi052__feroxbuster-120": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "epi052__feroxbuster-116": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "epi052__feroxbuster-113": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ron-rs__ron-80": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ron-rs__ron-225": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ron-rs__ron-112": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ron-rs__ron-114": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ron-rs__ron-124": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ron-rs__ron-324": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ron-rs__ron-103": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ron-rs__ron-512": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ron-rs__ron-78": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ron-rs__ron-206": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ron-rs__ron-75": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ron-rs__ron-150": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ron-rs__ron-108": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "BurntSushi__rust-csv-213": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "rustsec__rustsec-848": [
+        "cd \"cargo-audit\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "dtolnay__syn-1714": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dtolnay__syn-1759": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "TeXitoi__structopt-14": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "static-web-server__static-web-server-166": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "static-web-server__static-web-server-471": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "static-web-server__static-web-server-74": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "tracel-ai__burn-390": [
+        "cd \"burn-tensor\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "tracel-ai__burn-2224": [
+        "cd \"crates/burn-import/onnx-tests\"",
+        "cargo test --no-fail-fast --all-features --test \"test_onnx\"",
+        "cd ../../../",
+        "cd \"crates/burn-tensor\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "tracel-ai__burn-2540": [
+        "cd \"crates/burn-tensor\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"crates/burn-train\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "crossterm-rs__crossterm-541": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "crossterm-rs__crossterm-885": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "crossterm-rs__crossterm-423": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "alacritty__alacritty-7729": [
+        "cd \"alacritty_config_derive\"",
+        "cargo test --no-fail-fast --all-features --test \"config\"",
+        "cd ../"
+    ],
+    "alacritty__alacritty-5607": [
+        "cd \"alacritty_terminal\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "alacritty__alacritty-6186": [
+        "cd \"alacritty_config_derive\"",
+        "cargo test --no-fail-fast --all-features --test \"config\"",
+        "cd ../"
+    ],
+    "alacritty__alacritty-8356": [
+        "cd \"alacritty\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"alacritty_terminal\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "alacritty__alacritty-7204": [
+        "cd \"alacritty\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"alacritty_terminal\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "alacritty__alacritty-5722": [
+        "cd \"alacritty_terminal\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "alacritty__alacritty-5788": [
+        "cd \"alacritty_terminal\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "alacritty__alacritty-7600": [
+        "cd \"alacritty_terminal\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "alacritty__alacritty-8069": [
+        "cd \"alacritty_terminal\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "alacritty__alacritty-8315": [
+        "cd \"alacritty_terminal\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "alacritty__alacritty-5870": [
+        "cd \"alacritty\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"alacritty_terminal\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "alacritty__alacritty-7281": [
+        "cd \"alacritty_terminal\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "alacritty__alacritty-8190": [
+        "cd \"alacritty_terminal\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "alacritty__alacritty-5653": [
+        "cd \"alacritty_terminal\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "ankitects__anki-3162": [
+        "cd \"rslib/i18n\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "paritytech__substrate-13502": [
+        "cd \"frame/message-queue\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "rbspy__rbspy-371": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "o2sh__onefetch-1389": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "o2sh__onefetch-625": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "axodotdev__cargo-dist-275": [
+        "cd \"cargo-dist-schema\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"cargo-dist\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "axodotdev__cargo-dist-1420": [
+        "cd \"cargo-dist-schema\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "axodotdev__cargo-dist-279": [
+        "cd \"cargo-dist\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "axodotdev__cargo-dist-1503": [
+        "cd \"cargo-dist\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "axodotdev__cargo-dist-1465": [
+        "cd \"cargo-dist\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "axodotdev__cargo-dist-776": [
+        "cd \"cargo-dist\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "axodotdev__cargo-dist-357": [
+        "cd \"cargo-dist\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "axodotdev__cargo-dist-1586": [
+        "cd \"cargo-dist\"",
+        "cargo test --no-fail-fast --all-features --test \"integration-tests\"",
+        "cd ../"
+    ],
+    "axodotdev__cargo-dist-1635": [
+        "cd \"cargo-dist\"",
+        "cargo test --no-fail-fast --all-features --test \"integration-tests\"",
+        "cd ../"
+    ],
+    "skim-rs__skim-199": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "skim-rs__skim-282": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "skim-rs__skim-105": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "skim-rs__skim-264": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "skim-rs__skim-563": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "skim-rs__skim-239": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "skim-rs__skim-198": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "skim-rs__skim-362": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1319": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-856": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-618": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1256": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-604": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1347": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1173": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-783": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-573": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1602": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-962": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1565": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1305": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-694": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1318": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1241": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-617": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1101": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1075": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1453": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-935": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-930": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-697": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-971": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-749": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1320": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-436": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-655": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1058": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-781": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1338": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__datafusion-sqlparser-rs-1556": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "RustPython__RustPython-4711": [
+        "cd \"common\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "google__zerocopy-1713": [
+        "cd \"zerocopy-derive\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "mozilla__cbindgen-483": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mozilla__cbindgen-563": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mozilla__cbindgen-454": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mozilla__cbindgen-401": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mozilla__cbindgen-452": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mozilla__cbindgen-466": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mozilla__cbindgen-489": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mozilla__cbindgen-479": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mozilla__cbindgen-494": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mozilla__cbindgen-556": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "libp2p__rust-libp2p-2125": [
+        "cd \"protocols/kad\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "libp2p__rust-libp2p-2972": [
+        "cd \"swarm\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"transports/noise\"",
+        "cargo test --no-fail-fast --all-features --test \"smoke\"",
+        "cd ../../"
+    ],
+    "ducaale__xh-209": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ducaale__xh-276": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ducaale__xh-46": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ducaale__xh-257": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "anoma__namada-3888": [
+        "cd \"crates/tx\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "anoma__namada-2667": [
+        "cd \"crates/proof_of_stake\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "anoma__namada-2628": [
+        "cd \"crates/governance\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "anoma__namada-1993": [
+        "cd \"apps\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"ethereum_bridge\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "anoma__namada-3882": [
+        "cd \"crates/tx\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "hyperium__hyper-3275": [
+        "cargo clean",
+        "lint_check_config=\"\\n[lints.rust.unexpected_cfgs]\\nlevel = \\\"warn\\\"\\ncheck-cfg = ['cfg(hyper_unstable_ffi)']\\n\" ",
+        "grep -q '\\[lints\\.rust\\.unexpected_cfgs\\]' ./Cargo.toml || echo -e \"$lint_check_config\" >> ./Cargo.toml",
+        "\n            find . -name \"*.rs\" -type f | while read file; do\n                sed -i 's/deny(warnings)/allow(warnings)/g' \"$file\"\n            done\n            ",
+        "export RUSTFLAGS=\"-A warnings --cfg hyper_unstable_ffi\" ",
+        "export RUSTDOCFLAGS=\"-A warnings --cfg hyper_unstable_ffi\"",
+        "cargo test --no-fail-fast --features=\"full ffi\" --test client"
+    ],
+    "hyperium__hyper-3725": [
+        "lint_check_config=\"\\n[lints.rust.unexpected_cfgs]\\nlevel = \\\"warn\\\"\\ncheck-cfg = ['cfg(hyper_unstable_tracing)', 'cfg(hyper_unstable_ffi)']\\n\" ",
+        "grep -q '\\[lints\\.rust\\.unexpected_cfgs\\]' ./Cargo.toml || echo -e \"$lint_check_config\" >> ./Cargo.toml",
+        "export RUSTFLAGS=\"-A warnings --cfg hyper_unstable_tracing --cfg hyper_unstable_ffi\" ",
+        "export RUSTDOCFLAGS=\"-A warnings --cfg hyper_unstable_tracing --cfg hyper_unstable_ffi\"",
+        "cargo test --no-fail-fast --features=\"full ffi tracing\" "
+    ],
+    "hyperium__hyper-3812": [
+        "lint_check_config=\"\\n[lints.rust.unexpected_cfgs]\\nlevel = \\\"warn\\\"\\ncheck-cfg = ['cfg(hyper_unstable_tracing)', 'cfg(hyper_unstable_ffi)']\\n\" ",
+        "grep -q '\\[lints\\.rust\\.unexpected_cfgs\\]' ./Cargo.toml || echo -e \"$lint_check_config\" >> ./Cargo.toml",
+        "export RUSTFLAGS=\"-A warnings --cfg hyper_unstable_tracing --cfg hyper_unstable_ffi\" ",
+        "export RUSTDOCFLAGS=\"-A warnings --cfg hyper_unstable_tracing --cfg hyper_unstable_ffi\"",
+        "cargo test --no-fail-fast --features=\"full ffi tracing\" --test client"
+    ],
+    "hyperium__hyper-3616": [
+        "lint_check_config=\"\\n[lints.rust.unexpected_cfgs]\\nlevel = \\\"warn\\\"\\ncheck-cfg = ['cfg(hyper_unstable_tracing)', 'cfg(hyper_unstable_ffi)']\\n\" ",
+        "grep -q '\\[lints\\.rust\\.unexpected_cfgs\\]' ./Cargo.toml || echo -e \"$lint_check_config\" >> ./Cargo.toml",
+        "export RUSTFLAGS=\"-A warnings --cfg hyper_unstable_tracing --cfg hyper_unstable_ffi\" ",
+        "export RUSTDOCFLAGS=\"-A warnings --cfg hyper_unstable_tracing --cfg hyper_unstable_ffi\"",
+        "cargo test --no-fail-fast --features=\"full ffi tracing\" --test server"
+    ],
+    "hyperium__hyper-3261": [
+        "cargo clean",
+        "lint_check_config=\"\\n[lints.rust.unexpected_cfgs]\\nlevel = \\\"warn\\\"\\ncheck-cfg = ['cfg(hyper_unstable_ffi)']\\n\" ",
+        "grep -q '\\[lints\\.rust\\.unexpected_cfgs\\]' ./Cargo.toml || echo -e \"$lint_check_config\" >> ./Cargo.toml",
+        "\n            find . -name \"*.rs\" -type f | while read file; do\n                sed -i 's/deny(warnings)/allow(warnings)/g' \"$file\"\n            done\n            ",
+        "export RUSTFLAGS=\"-A warnings --cfg hyper_unstable_ffi\" ",
+        "export RUSTDOCFLAGS=\"-A warnings --cfg hyper_unstable_ffi\"",
+        "cargo test --no-fail-fast --features=\"full ffi\" --test server"
+    ],
+    "afnanenayet__diffsitter-519": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "apache__arrow-rs-3222": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-5717": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-5439": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-4909": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-2890": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-3238": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-4343": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-2407": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-2377": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-4681": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-4045": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-6269": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-443": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-4670": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-3811": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-5076": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-4201": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-6368": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-5092": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-4327": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-3188": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-4351": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-4598": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "apache__arrow-rs-2044": [
+        "export RUSTFLAGS=\"-Awarnings\" ",
+        "cargo test --no-fail-fast --all-features "
+    ],
+    "biomejs__biome-411": [
+        "cd \"crates/biome_js_analyze\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "biomejs__biome-3183": [
+        "cd \"crates/biome_cli\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "biomejs__biome-3451": [
+        "cd \"crates/biome_js_formatter\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "biomejs__biome-3143": [
+        "cd \"crates/biome_js_analyze\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "biomejs__biome-521": [
+        "cd \"crates/biome_js_analyze\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "biomejs__biome-4186": [
+        "cd \"crates/biome_js_factory\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "biomejs__biome-2940": [
+        "cd \"crates/biome_css_analyze\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "biomejs__biome-3036": [
+        "cd \"crates/biome_formatter\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "biomejs__biome-3207": [
+        "cd \"crates/biome_migrate\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "biomejs__biome-4179": [
+        "cd \"crates/biome_js_analyze\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "biomejs__biome-3034": [
+        "cd \"crates/biome_css_analyze\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "zellij-org__zellij-1776": [
+        "cd \"zellij-server\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "zellij-org__zellij-1749": [
+        "cd \"zellij-server\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "zellij-org__zellij-1689": [
+        "cd \"zellij-server\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "ordinals__ord-3949": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ordinals__ord-3947": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ordinals__ord-4065": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ordinals__ord-3968": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ordinals__ord-4126": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ordinals__ord-4117": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ordinals__ord-609": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ordinals__ord-975": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ordinals__ord-917": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ordinals__ord-3768": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "ordinals__ord-3748": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "est31__cargo-udeps-132": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "petgraph__petgraph-670": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "petgraph__petgraph-427": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "petgraph__petgraph-415": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "petgraph__petgraph-303": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "petgraph__petgraph-286": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "petgraph__petgraph-432": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "quadratichq__quadratic-1883": [
+        "cd \"quadratic-core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "quadratichq__quadratic-1939": [
+        "cd \"quadratic-core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "quadratichq__quadratic-1923": [
+        "cd \"quadratic-core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "quadratichq__quadratic-2012": [
+        "cd \"quadratic-core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "postgresml__pgcat-835": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "oxidecomputer__hubris-1939": [
+        "cd \"lib/oxide-barcode\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "shssoichiro__oxipng-466": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "shssoichiro__oxipng-531": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "tokio-rs__tokio-2457": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test rt_threaded",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-1875": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test rt_common",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-1902": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test sync_mutex",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-5838": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test rt_threaded",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-2410": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test task_blocking",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-5772": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test rt_handle",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-5914": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test io_split",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-3860": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test time_pause",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-4119": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test sync_mpsc",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-2448": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test sync_broadcast",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-6724": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test io_write_all_buf",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-2006": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test rt_common",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-2362": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test rt_common",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-4430": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test join_handle_panic",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-3965": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test task_abort",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-3852": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test time_pause",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-6593": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tests-build",
+        "cargo test --no-fail-fast --all-features ",
+        "cd ../",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test macros_test",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-6414": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio-util",
+        "cargo test --no-fail-fast --all-features --test length_delimited",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-2354": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test fs_copy",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-2285": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test time_delay_queue",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-3712": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test time_pause",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-4867": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test sync_broadcast",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-2145": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test no_rt",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-6231": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test coop_budger",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-6752": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio-util",
+        "cargo test --no-fail-fast --all-features --test time_delay_queue",
+        "cd ../"
+    ],
+    "tokio-rs__tokio-3441": [
+        "export RUSTFLAGS=\"-Awarnings -Aunused_must_use -Aundropped_manually_drops -Ainvalid_doc_attributes -Auseless_deprecated -Aintra_doc_link_resolution_failure -Alet_underscore_lock -Arenamed_and_removed_lints -Abroken_intra_doc_links\" ",
+        "cd ./tokio",
+        "cargo test --no-fail-fast --all-features --test io_driver",
+        "cargo test --no-fail-fast --all-features --test no_rt",
+        "cargo test --no-fail-fast --all-features --test rt_basic",
+        "cd ../"
+    ],
+    "plotters-rs__plotters-378": [
+        "cd \"plotters-bitmap\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"plotters\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "PyO3__pyo3-2262": [
+        "cd \"examples/pyo3-pytests\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"pyo3-build-config\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "RustScan__RustScan-518": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "RustScan__RustScan-660": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "slawlor__ractor-230": [
+        "cd \"ractor\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "slawlor__ractor-257": [
+        "cd \"ractor\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "dimforge__nalgebra-1384": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dimforge__nalgebra-1369": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "amethyst__bracket-lib-240": [
+        "cd \"bracket-geometry\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "amethyst__bracket-lib-126": [
+        "cd \"bracket-algorithm-traits\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"bracket-pathfinding\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "probe-rs__probe-rs-2832": [
+        "cd \"probe-rs-target\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"smoke-tester\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "getzola__zola-2535": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "getzola__zola-2547": [
+        "cd \"components/config\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"components/content\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"components/markdown\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cd \"components/utils\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "lalrpop__lalrpop-898": [
+        "cd \"lalrpop\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "tokio-rs__axum-529": [
+        "cd \"axum\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "tokio-rs__axum-868": [
+        "cd \"axum\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "dotenv-linter__dotenv-linter-463": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dotenv-linter__dotenv-linter-138": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dotenv-linter__dotenv-linter-394": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dotenv-linter__dotenv-linter-140": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dotenv-linter__dotenv-linter-462": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dotenv-linter__dotenv-linter-146": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dotenv-linter__dotenv-linter-625": [
+        "cd \"dotenv-linter\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "dotenv-linter__dotenv-linter-105": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dotenv-linter__dotenv-linter-139": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "quickwit-oss__tantivy-874": [
+        "cd \"query-grammar\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "quickwit-oss__tantivy-2333": [
+        "cd \"query-grammar\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "algesten__ureq-50": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "algesten__ureq-578": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "algesten__ureq-327": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "algesten__ureq-324": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "algesten__ureq-238": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "algesten__ureq-408": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "railwayapp__nixpacks-557": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "railwayapp__nixpacks-839": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "railwayapp__nixpacks-163": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "railwayapp__nixpacks-436": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "railwayapp__nixpacks-453": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "railwayapp__nixpacks-107": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "railwayapp__nixpacks-723": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "tokio-rs__tracing-2794": [
+        "cd \"tracing-appender\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"tracing-attributes\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"tracing-core\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"tracing-error\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"tracing-flame\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"tracing-futures\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"tracing-journald\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"tracing-log\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"tracing-serde\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"tracing-subscriber\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../",
+        "cd \"tracing\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "dtolnay__cxx-361": [
+        "cd \"tests/ffi\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../",
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dtolnay__cxx-391": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dtolnay__cxx-319": [
+        "cd \"gen/cmd\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "Keats__jsonwebtoken-247": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "Keats__jsonwebtoken-332": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "elkowar__eww-1044": [
+        "cd \"crates/simplexpr\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "elkowar__eww-1176": [
+        "cd \"crates/simplexpr\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../../"
+    ],
+    "dathere__qsv-203": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dathere__qsv-35": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "dathere__qsv-184": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "SeaQL__sea-orm-226": [
+        "cd \"sea-orm-codegen\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "SeaQL__sea-orm-746": [
+        "cd \"sea-orm-codegen\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "SeaQL__sea-orm-1953": [
+        "cd \"sea-orm-codegen\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "SeaQL__sea-orm-1821": [
+        "cd \"sea-orm-codegen\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "tealdeer-rs__tealdeer-236": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "mitsuhiko__minijinja-435": [
+        "cd \"minijinja\"",
+        "cargo test --no-fail-fast --all-features --test \"test_macros\"",
+        "cd ../"
+    ],
+    "mitsuhiko__minijinja-554": [
+        "cd \"minijinja\"",
+        "cargo test --no-fail-fast --all-features --test \"test_value\"",
+        "cd ../"
+    ],
+    "mitsuhiko__minijinja-269": [
+        "cd \"minijinja\"",
+        "cargo test --no-fail-fast --all-features",
+        "cd ../"
+    ],
+    "mitsuhiko__minijinja-569": [
+        "cd \"minijinja\"",
+        "cargo test --no-fail-fast --all-features --test \"test_value\"",
+        "cd ../"
+    ],
+    "mitsuhiko__minijinja-611": [
+        "cd \"minijinja-cli\"",
+        "cargo test --no-fail-fast --all-features --test \"test_basic\"",
+        "cd ../"
+    ],
+    "mitsuhiko__minijinja-624": [
+        "cd \"minijinja-cli\"",
+        "cargo test --no-fail-fast --all-features --test \"test_basic\"",
+        "cd ../"
+    ],
+    "mitsuhiko__minijinja-584": [
+        "cd \"minijinja\"",
+        "cargo test --no-fail-fast --all-features --test \"test_value\"",
+        "cd ../"
+    ],
+    "mitsuhiko__minijinja-579": [
+        "cd \"minijinja\"",
+        "cargo test --no-fail-fast --all-features --test \"test_value\"",
+        "cd ../"
+    ],
+    "salsa-rs__salsa-596": [
+        "cargo test --no-fail-fast --all-features"
+    ],
+    "salsa-rs__salsa-591": [
+        "cargo test --no-fail-fast --all-features"
+    ]
+}

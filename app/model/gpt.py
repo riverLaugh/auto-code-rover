@@ -68,7 +68,7 @@ class OpenaiModel(Model):
         """
         if self.client is None:
             key = self.check_api_key()
-            self.client = OpenAI(api_key=key)
+            self.client = OpenAI(api_key=key,base_url="https://api5.xhub.chat/v1/")
 
     def check_api_key(self) -> str:
         key = os.getenv("OPENAI_KEY")

@@ -40,7 +40,7 @@ except ImportError:
 
 from app.data_structures import ReproResult
 from app.log import log_and_print
-from app.utils import run_script_in_conda
+from app.utils import run_script_in_conda,run_script_in_docker
 
 
 class Task(ABC):
@@ -92,15 +92,120 @@ class Task(ABC):
             with apputils.cd(self.project_path):
                 apputils.repo_clean_changes()
 
-    # TODO: remove this
-    def clean_active_project_changes(self) -> None:
-        with apputils.cd(self.project_path):
-            apputils.repo_clean_changes()
+    def execute_reproducer(
+        self, test_content: str, patch_content: str | None = None
+    ) -> ReproResult:
+        cm = nullcontext() if patch_content is None else self.apply_patch(patch_content)
+        with cm:
+            with NamedTemporaryFile(
+                buffering=0, prefix="reproducer-", suffix=".rs"
+            ) as f:
+                f.write(test_content.encode())
+                try:
+                    cp = run_script_in_docker(
+                        [f.name],
+                        self.docker_name,
+                        text=True,
+                        capture_output=True,
+                        timeout=120,  # 2 min for reproducer should be enough
+                    )
+                    cp_stdout = cp.stdout
+                    cp_stderr = cp.stderr
+                    cp_returncode = cp.returncode
+                except subprocess.TimeoutExpired:
+                    cp_stdout = ""
+                    cp_stderr = "Test execution timeout."
+                    cp_returncode = -1
+                # stderr can be very long; truncate it so we dont exceed model limit
+        stderr_result = str(cp_stderr)
+        stderr_lines = stderr_result.splitlines()
+        if len(stderr_lines) > 100:
+            # take first 50 and last 50 lines
+            stderr_result = "\n".join(stderr_lines[:50] + ["..."] + stderr_lines[-50:])
+        return ReproResult(cp_stdout, stderr_result, cp_returncode)
+
+
+@dataclass(kw_only=True)
+class RustTask(Task):
+    task_id: str
+    problem_statement: str
+    repo_path: str
+    # commit: str
+    docker_image_name: str # sweb.eval.x86_64.apache__arrow-rs-6884
+    # repo_name: str
+    # repo_version: str
+    # pre_install_cmds: list[str]
+    # install_cmd: str
+    # test_cmd: str
+    # test_patch: str
+    # testcases_passing: list[str]
+    # testcases_failing: list[str]
+
+    @property
+    def project_path(self) -> str:
+        return self.repo_path
+    
+    def reset_project(self)-> None:
+        pass
 
     def execute_reproducer(
         self, test_content: str, patch_content: str | None = None
     ) -> ReproResult:
-        raise NotImplementedError
+        cm = nullcontext() if patch_content is None else self.apply_patch(patch_content)
+        with cm:
+            with NamedTemporaryFile(
+                buffering=0, prefix="reproducer-", suffix=".rs"
+            ) as f:
+                f.write(test_content.encode())
+                try:
+                    cp = run_script_in_docker(
+                        f.name,
+                        self.docker_image_name,
+                        text=True,
+                        capture_output=True,
+                        timeout=120,  # 2 min for reproducer should be enough
+                    )
+                    cp_stdout = cp.stdout
+                    cp_stderr = cp.stderr
+                    cp_returncode = cp.returncode
+                except subprocess.TimeoutExpired:
+                    cp_stdout = ""
+                    cp_stderr = "Test execution timeout."
+                    cp_returncode = -1
+                # stderr can be very long; truncate it so we dont exceed model limit
+        stderr_result = str(cp_stderr)
+        stderr_lines = stderr_result.splitlines()
+        if len(stderr_lines) > 100:
+            # take first 50 and last 50 lines
+            stderr_result = "\n".join(stderr_lines[:50] + ["..."] + stderr_lines[-50:])
+        return ReproResult(cp_stdout, stderr_result, cp_returncode)
+    
+    def get_issue_statement(self) -> str:
+        return self.problem_statement
+    
+    def setup_project(self) -> None:
+        pass
+    
+    def validate(self, patch_content: str) -> tuple[bool,str,str,str]:
+        with self.apply_patch(patch_content):
+            
+            pass
+    
+    @classmethod
+    def make_noop_patch(cls, project_path: str) -> str:
+        
+        pass
+
+
+    def evaluate_reproducer(
+        self,
+        reproducer_file: str | PathLike,
+        developer_patch_file: str | PathLike,
+        report_dir: str | PathLike,
+    ) -> None:
+        
+        pass
+        
 
 
 @dataclass(kw_only=True)
@@ -189,18 +294,18 @@ class SweTask(Task):
                 log_and_print(cp.stderr)
                 raise RuntimeError(f"Command {task.install_cmd} failed.")
             # (3) xmlrunner for our custom run_test; coverage required for fault localization
-            other_install_cmd = (
-                "python -m pip install xmlrunner coverage pytest pytest-cov decorator"
-            )
-            cp = apputils.run_string_cmd_in_conda(
-                other_install_cmd,
-                task.env_name,
-                capture_output=True,
-                text=True,
-            )
-            if cp.returncode != 0:
-                log_and_print(cp.stderr)
-                raise RuntimeError(f"Command {other_install_cmd} failed.")
+            # other_install_cmd = (
+            #     "python -m pip install xmlrunner coverage pytest pytest-cov decorator"
+            # )
+            # cp = apputils.run_string_cmd_in_conda(
+            #     other_install_cmd,
+            #     task.env_name,
+            #     capture_output=True,
+            #     text=True,
+            # )
+            # if cp.returncode != 0:
+            #     log_and_print(cp.stderr)
+            #     raise RuntimeError(f"Command {other_install_cmd} failed.")
 
     def validate(self, patch_content: str) -> tuple[bool, str, str, str]:
         with self.apply_patch(patch_content):

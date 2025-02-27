@@ -821,10 +821,10 @@ class SearchBackend:
                     ):
                         continue
 
-                    inherited_output, inherited_search_res, _ = (
-                        self._get_inherited_methods(res.class_name, res.func_name)
-                    )
-                    search_res.extend(inherited_search_res)
+                    # inherited_output, inherited_search_res, _ = (
+                    #     self._get_inherited_methods(res.class_name, res.func_name)
+                    # )
+                    # search_res.extend(inherited_search_res)
 
                     # this kind of class is special, they just serve as a context,
                     # so the 'intended_behavior' field content does not apply for them.

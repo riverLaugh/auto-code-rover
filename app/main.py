@@ -31,7 +31,7 @@ from app.post_process import (
     organize_and_form_input,
     reextract_organize_and_form_inputs,
 )
-from app.raw_tasks import RawGithubTask, RawLocalTask, RawSweTask, RawTask
+from app.raw_tasks import RawGithubTask, RawLocalTask, RawSweTask, RawTask,RawRustTask
 from app.task import SweTask, Task
 
 
@@ -45,8 +45,11 @@ def main():
     swe_parser = subparsers.add_parser(
         "swe-bench", help="Run one or multiple swe-bench tasks"
     )
+    rust_parser = subparsers.add_parser(
+        "rust-bench", help="Run one or multiple rust-bench tasks"
+    )
     set_swe_parser_args(swe_parser)
-
+    set_swe_parser_args(rust_parser)
     github_parser = subparsers.add_parser(
         "github-issue",
         help="Run an online github issue",
@@ -118,6 +121,22 @@ def main():
 
         groups = group_swe_tasks_by_env(tasks)
         run_task_groups(groups, num_processes, organize_output=True)
+    elif subcommand == "rust-bench":
+        if args.result_analysis:
+            # do analysis and exit
+            result_analysis.analyze(config.output_dir)
+            exit(0)
+
+        tasks = make_rust_tasks(
+            args.task, args.task_list_file, args.setup_map, args.tasks_map
+        )
+
+        config.only_eval_reproducer = args.eval_reproducer
+
+        config.reproduce_and_review = args.reproduce_and_review
+
+        groups = group_swe_tasks_by_env(tasks)
+        run_task_groups(groups, num_processes, organize_output=True)
     elif subcommand == "github-issue":
         setup_dir = args.setup_dir
         if setup_dir is not None:
@@ -130,6 +149,10 @@ def main():
             args.issue_link,
             setup_dir,
         )
+        # task = RawRustTask(
+        #     args.task_id,
+        #     {},{}    
+        # )
         groups = {"github": [task]}
         run_task_groups(groups, num_processes)
     elif subcommand == "local-issue":
@@ -301,6 +324,52 @@ def add_task_related_args(parser: ArgumentParser) -> None:
         help="Number of processes to run the tasks in parallel.",
     )
 
+def make_rust_tasks(
+    task_id: str | None,
+    task_list_file: str | None,
+    setup_map_file: str,
+    tasks_map_file: str,
+) -> list[RawRustTask]:
+    if task_id is not None and task_list_file is not None:
+        raise ValueError("Cannot specify both task and task-list.")
+
+    all_task_ids = []
+    if task_list_file is not None:
+        all_task_ids = parse_task_list_file(task_list_file)
+    if task_id is not None:
+        all_task_ids = [task_id]
+    if len(all_task_ids) == 0:
+        raise ValueError("No task ids to run.")
+
+    with open(setup_map_file) as f:
+        setup_map = json.load(f)
+    with open(tasks_map_file) as f:
+        tasks_map = json.load(f)
+
+    # Check if all task ids are in the setup and tasks map
+    # This allows failing safely if some tasks are not set up properly
+    missing_task_ids = [
+        x for x in all_task_ids if not (x in setup_map and x in tasks_map)
+    ]
+    if missing_task_ids:
+        # Log the tasks that are not in the setup or tasks map
+        for task_id in sorted(missing_task_ids):
+            log.print_with_time(
+                f"Skipping task {task_id} which was not found in setup or tasks map."
+            )
+        # And drop them from the list of all task ids
+        all_task_ids = filter(lambda x: x not in missing_task_ids, all_task_ids)
+
+    all_task_ids = sorted(all_task_ids)
+
+    # for each task in the list to run, create a Task instance
+    all_tasks = []
+    for task_id in all_task_ids:
+        setup_info = setup_map[task_id]
+        task_info = tasks_map[task_id]
+        task = RawRustTask(task_id, setup_info, task_info)
+        all_tasks.append(task)
+    return all_tasks
 
 def make_swe_tasks(
     task_id: str | None,

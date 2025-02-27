@@ -18,32 +18,52 @@ from app.task import Task
 SYSTEM_PROMPT = (
     "You are an experienced software engineer responsible for reproducing given issues."
 )
-INITIAL_REQUEST = (
-    "Please try to write a standalone python file `reproducer.py` to reproduce"
-    " the issue. Put the file in a code block.\n\n"
-    "The file would be put in the root directory of the project and executed"
-    " by `python3 reproducer.py`. The script should raise an `AssertionError` when"
-    " the issue is present and print a stack trace of the issue. The script should also"
-    " exit with code 0 when the issue is fixed.\n\n"
-    # Reformat the stacktrace, so that context retrieval agent can
-    # get the line numbers right later
-    "Please use the following function to print the stack trace, so that the line numbers"
-    " of the statements are shown clearly:\n"
-    "```\n"
-    "def print_stacktrace(e: Exception):\n"
-    "    import traceback"
-    "    import sys"
-    "    tb = traceback.extract_tb(e.__traceback__)\n"
-    '    print("Traceback (most recent call last):", file=sys.stderr)\n'
-    "    for frame in tb:\n"
-    "        line_number = frame.lineno\n"
-    '        code_context = frame.line.strip() if frame.line else "Unknown"\n'
-    "        print(f'  File \"{frame.filename}\"', file=sys.stderr)\n"
-    '        print(f"    {line_number}: {code_context}", file=sys.stderr)\n'
-    '    print(f"{e.__class__.__name__}: {e}", file=sys.stderr)\n'
-    "```\n"
-)
+# INITIAL_REQUEST = (
+#     "Please try to write a standalone python file `reproducer.py` to reproduce"
+#     " the issue. Put the file in a code block.\n\n"
+#     "The file would be put in the root directory of the project and executed"
+#     " by `python3 reproducer.py`. The script should raise an `AssertionError` when"
+#     " the issue is present and print a stack trace of the issue. The script should also"
+#     " exit with code 0 when the issue is fixed.\n\n"
+#     # Reformat the stacktrace, so that context retrieval agent can
+#     # get the line numbers right later
+#     "Please use the following function to print the stack trace, so that the line numbers"
+#     " of the statements are shown clearly:\n"
+#     "```\n"
+#     "def print_stacktrace(e: Exception):\n"
+#     "    import traceback"
+#     "    import sys"
+#     "    tb = traceback.extract_tb(e.__traceback__)\n"
+#     '    print("Traceback (most recent call last):", file=sys.stderr)\n'
+#     "    for frame in tb:\n"
+#     "        line_number = frame.lineno\n"
+#     '        code_context = frame.line.strip() if frame.line else "Unknown"\n'
+#     "        print(f'  File \"{frame.filename}\"', file=sys.stderr)\n"
+#     '        print(f"    {line_number}: {code_context}", file=sys.stderr)\n'
+#     '    print(f"{e.__class__.__name__}: {e}", file=sys.stderr)\n'
+#     "```\n"
+# )
 
+INITIAL_REQUEST = (
+    "Please try to write a standalone Rust file `reproducer.rs` to reproduce the issue. "
+    "Put the file in a code block.\n\n"
+    "The file would be put in the root directory of the project and compiled and executed "
+    "using `cargo run --bin reproducer`. The script should panic when the issue is present, "
+    "and the panic message should include a stack trace of the issue. The script should "
+    "exit successfully (without panicking) when the issue is fixed.\n\n"
+    "Please use the following function to print the stack trace, so that the line numbers "
+    "of the statements are shown clearly:\n"
+    "\n"
+    "fn print_stacktrace(e: &dyn std::error::Error) {\n"
+    "    eprintln!(\"Error: {}\", e);\n"
+    "    let backtrace = std::backtrace::Backtrace::capture();\n"
+    "    eprintln!(\"Stack trace:\\n{:?}\", backtrace);\n"
+    "}\n"
+    "\n"
+    "When the issue is present, the script should panic with a descriptive message, and the "
+    "stack trace should be printed using the `print_stacktrace` function. When the issue "
+    "is fixed, the script should exit successfully without panicking.\n"
+)
 
 class NoReproductionStep(RuntimeError):
     """Raised when issue statement does not contain steps for reproduction."""

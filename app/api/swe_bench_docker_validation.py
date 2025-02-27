@@ -72,6 +72,7 @@ def run_pre_existing_tests(
         "test_patch": developer_test_patch,
     }
     test_directives = get_test_directives(instance_to_get_test_directive)
+    #TODO: replace test_cmd with the actual test command
     test_cmd = f"{test_type} {' '.join(test_directives)}"
 
     # use no-op test_patch, since we are running pre-existing tests

@@ -266,6 +266,7 @@ def _run_one_task(
     print_banner("Starting AutoCodeRover on the following issue")
     print_issue(problem_stmt)
 
+    # api_manager.task is a SWE task
     test_agent = TestAgent(api_manager.task, output_dir)
 
     repro_result_map = {}

@@ -123,31 +123,44 @@ class Task(ABC):
             # take first 50 and last 50 lines
             stderr_result = "\n".join(stderr_lines[:50] + ["..."] + stderr_lines[-50:])
         return ReproResult(cp_stdout, stderr_result, cp_returncode)
-
-
+    
 @dataclass(kw_only=True)
 class RustTask(Task):
     task_id: str
     problem_statement: str
     repo_path: str
-    # commit: str
     docker_image_name: str # sweb.eval.x86_64.apache__arrow-rs-6884
-    # repo_name: str
-    # repo_version: str
-    # pre_install_cmds: list[str]
-    # install_cmd: str
-    # test_cmd: str
-    # test_patch: str
-    # testcases_passing: list[str]
-    # testcases_failing: list[str]
-
+    
     @property
     def project_path(self) -> str:
         return self.repo_path
     
-    def reset_project(self)-> None:
-        pass
-
+    def reset_project(self) -> None:
+        """Reset project to initial state."""
+        with apputils.cd(self.repo_path):
+            apputils.repo_clean_changes()
+            
+    def get_issue_statement(self) -> str:
+        return self.problem_statement
+    
+    def setup_project(self) -> None:
+        """Set up the project before starting to resolve the task."""
+        # 确保Docker镜像存在
+        log_and_print(f"[Setup] Using Docker image: {self.docker_image_name}")
+        
+        # 检查Docker镜像
+        cp = subprocess.run(
+            ["docker", "image", "inspect", self.docker_image_name],
+            capture_output=True,
+            text=True
+        )
+        if cp.returncode != 0:
+            log_and_print(f"[Warning] Docker image {self.docker_image_name} not found.")
+        
+        # 提交当前更改，以便之后的重置不会丢失它们
+        with apputils.cd(self.repo_path):
+            apputils.repo_commit_current_changes()
+    
     def execute_reproducer(
         self, test_content: str, patch_content: str | None = None
     ) -> ReproResult:
@@ -159,7 +172,7 @@ class RustTask(Task):
                 f.write(test_content.encode())
                 try:
                     cp = run_script_in_docker(
-                        f.name,
+                        [f.name],
                         self.docker_image_name,
                         text=True,
                         capture_output=True,
@@ -180,22 +193,141 @@ class RustTask(Task):
             stderr_result = "\n".join(stderr_lines[:50] + ["..."] + stderr_lines[-50:])
         return ReproResult(cp_stdout, stderr_result, cp_returncode)
     
-    def get_issue_statement(self) -> str:
-        return self.problem_statement
-    
-    def setup_project(self) -> None:
-        pass
-    
-    def validate(self, patch_content: str) -> tuple[bool,str,str,str]:
+    def validate(self, patch_content: str) -> tuple[bool, str, str, str]:
+        """验证补丁是否通过测试套件"""
         with self.apply_patch(patch_content):
-            
-            pass
+            log_and_print("[Validation] Applied patch. Going to run test suite.")
+
+            _, log_file = mkstemp(suffix=".log", prefix="rustval-", text=True)
+            tests_passed, msg, orig_log_file = (
+                self._run_test_suite_for_regression_docker(patch_content, log_file)
+            )
+
+        log_and_print(
+            f"[Validation] Finishing. Result is {tests_passed}. Message: {msg}",
+        )
+
+        return tests_passed, msg, log_file, orig_log_file
     
     @classmethod
     def make_noop_patch(cls, project_path: str) -> str:
-        
-        pass
+        """创建一个不改变功能的空补丁"""
+        with TemporaryDirectory() as d:
+            def run_command(cmd: list[str]) -> None:
+                subprocess.run(cmd, cwd=d, check=True, stdout=DEVNULL, stderr=DEVNULL)
 
+            gitignore_file = Path(project_path, ".gitignore")
+            copy2(gitignore_file, d)
+
+            run_command(["git", "init"])
+
+            run_command(["git", "add", "."])
+            run_command(["git", "commit", "-m", "first commit"])
+
+            gitignore_content = gitignore_file.read_text()
+            new_gitignore_content = f"{gitignore_content}\n"
+            Path(d, ".gitignore").write_text(new_gitignore_content)
+
+            run_command(["git", "add", "."])
+            run_command(["git", "commit", "-m", "append new line to gitignore"])
+
+            cp = subprocess.run(
+                ["git", "diff", "HEAD~", "HEAD"],
+                cwd=d,
+                check=True,
+                text=True,
+                capture_output=True,
+            )
+
+            return cp.stdout
+
+    def _run_test_suite_for_regression_docker(
+        self, patch_content: str, log_file: str
+    ) -> tuple[bool, str, str]:
+        """在Docker中运行测试套件并检查回归"""
+        # 使用空补丁获取原始状态
+        noop_patch = self.make_noop_patch(self.project_path)
+        orig_status_map, orig_eval_log_content = self._run_test_suite_docker(noop_patch)
+        _, orig_log_file = mkstemp(suffix=".log", prefix="rustval-", text=True)
+        Path(orig_log_file).write_text(orig_eval_log_content)
+
+        logger.info("Start running regression tests")
+
+        # 使用补丁运行测试套件
+        status_map, eval_log_content = self._run_test_suite_docker(patch_content)
+        Path(log_file).write_text(eval_log_content)
+
+        # 定义失败的测试状态
+        bad_status = ("FAILED", "ERROR")  # 使用字符串替代TestStatus枚举
+        failures = {test for test, status in status_map.items() if status in bad_status}
+        orig_failures = {
+            test for test, status in orig_status_map.items() if status in bad_status
+        }
+
+        # 检查是否有额外的失败测试
+        have_additional_failures = bool(failures - orig_failures)
+
+        logger.info(
+            "Regression tests {}", "failed" if have_additional_failures else "passed"
+        )
+
+        if have_additional_failures:
+            msg = "The patch caused some pre-existing tests to fail."
+        else:
+            msg = "The patch passed pre-existing tests."
+
+        return not have_additional_failures, msg, orig_log_file
+    
+    def _run_test_suite_docker(self, patch_content) -> tuple[dict, str]:
+        """在Docker中运行测试套件并返回结果"""
+        # 使用缓存以避免重复运行相同的测试
+        cache = getattr(self, "_regression_cache", {})
+
+        if patch_content in cache:
+            logger.debug("regression cache hit")
+            return cache[patch_content]
+
+        # 在Docker容器中运行Rust测试
+        with NamedTemporaryFile(buffering=0, suffix=".diff") as f:
+            f.write(patch_content.encode())
+            
+            # 这里假设我们有一个专门的脚本来在Docker中运行Rust测试
+            cp = subprocess.run(
+                [
+                    "docker", "run", "--rm",
+                    "-v", f"{self.project_path}:/project",
+                    "-v", f"{f.name}:/patch.diff",
+                    self.docker_image_name,
+                    "/bin/bash", "-c", 
+                    "cd /project && git apply /patch.diff && cargo test --all"
+                ],
+                capture_output=True,
+                text=True
+            )
+        
+        # 解析测试输出以获取状态映射
+        status_map = self._parse_test_output(cp.stdout + cp.stderr)
+        result = (status_map, cp.stdout + "\n" + cp.stderr)
+        
+        cache[patch_content] = result
+        self._regression_cache = cache
+        
+        return result
+    
+    def _parse_test_output(self, output: str) -> dict:
+        """解析Rust测试输出以提取测试状态映射"""
+        # 这是一个简化实现，实际上需要根据Rust的测试输出格式进行正确解析
+        status_map = {}
+        
+        lines = output.splitlines()
+        for line in lines:
+            if line.startswith("test ") and (" ... " in line):
+                parts = line.split(" ... ")
+                test_name = parts[0].replace("test ", "").strip()
+                status = parts[1].strip().upper()
+                status_map[test_name] = status
+        
+        return status_map
 
     def evaluate_reproducer(
         self,
@@ -203,8 +335,154 @@ class RustTask(Task):
         developer_patch_file: str | PathLike,
         report_dir: str | PathLike,
     ) -> None:
+        """运行reproducer测试，有和没有开发者补丁的情况，并记录结果"""
+        # 运行buggy版本的reproducer
+        buggy_cp = self._run_reproducer(reproducer_file)
+
+        # 应用补丁
+        subprocess.run(
+            ["git", "apply", developer_patch_file], 
+            cwd=self.project_path, 
+            check=True
+        )
         
-        pass
+        try:
+            # 运行修复后的reproducer
+            fixed_cp = self._run_reproducer(reproducer_file)
+        finally:
+            # 撤销补丁
+            subprocess.run(
+                ["git", "apply", "-R", developer_patch_file],
+                cwd=self.project_path, 
+                check=True
+            )
+
+        # 保存输出
+        Path(report_dir, "buggy.out").write_text(buggy_cp.stdout)
+        Path(report_dir, "buggy.err").write_text(buggy_cp.stderr)
+        Path(report_dir, "fixed.out").write_text(fixed_cp.stdout)
+        Path(report_dir, "fixed.err").write_text(fixed_cp.stderr)
+
+        # 总结结果
+        buggy_summary = self._summarize_cp(buggy_cp)
+        fixed_summary = self._summarize_cp(fixed_cp)
+        summary = {
+            "buggy_summary": buggy_summary,
+            "fixed_summary": fixed_summary,
+            "reproduced_by_returncode": (
+                buggy_cp.returncode != 0 and fixed_cp.returncode == 0
+            ),
+            "reproduced_by_assertion_error": (
+                buggy_summary["raised_assertion_error"]
+                and not fixed_summary["raised_assertion_error"]
+            ),
+        }
+        Path(report_dir, "summary.json").write_text(json.dumps(summary, indent=4))
+    
+    def _run_reproducer(self, reproducer_file: str | PathLike) -> CompletedProcess:
+        """
+        Helper method for running reproducer in Docker.
+        """
+        reproducer_path = Path(reproducer_file)
+        
+        return run_script_in_docker(
+            [str(reproducer_path)],
+            self.docker_image_name,
+            cwd=self.project_path,
+            text=True,
+            capture_output=True,
+        )
+
+    def _summarize_cp(self, cp: CompletedProcess) -> dict:
+        """
+        Helper method for summarizing reproducer execution results.
+        """
+        return {
+            "passed": cp.returncode == 0,
+            "raised_assertion_error": "assertion failed" in cp.stderr.lower() or "panic" in cp.stderr.lower(),
+        }
+
+
+# @dataclass(kw_only=True)
+# class RustTask(Task):
+#     task_id: str
+#     problem_statement: str
+#     repo_path: str
+#     # commit: str
+#     docker_image_name: str # sweb.eval.x86_64.apache__arrow-rs-6884
+#     # repo_name: str
+#     # repo_version: str
+#     # pre_install_cmds: list[str]
+#     # install_cmd: str
+#     # test_cmd: str
+#     # test_patch: str
+#     # testcases_passing: list[str]
+#     # testcases_failing: list[str]
+
+#     @property
+#     def project_path(self) -> str:
+#         return self.repo_path
+    
+#     def reset_project(self)-> None:
+#         pass
+
+#     def execute_reproducer(
+#         self, test_content: str, patch_content: str | None = None
+#     ) -> ReproResult:
+#         cm = nullcontext() if patch_content is None else self.apply_patch(patch_content)
+#         with cm:
+#             with NamedTemporaryFile(
+#                 buffering=0, prefix="reproducer-", suffix=".rs"
+#             ) as f:
+#                 f.write(test_content.encode())
+#                 try:
+#                     cp = run_script_in_docker(
+#                         f.name,
+#                         self.docker_image_name,
+#                         text=True,
+#                         capture_output=True,
+#                         timeout=120,  # 2 min for reproducer should be enough
+#                     )
+#                     cp_stdout = cp.stdout
+#                     cp_stderr = cp.stderr
+#                     cp_returncode = cp.returncode
+#                 except subprocess.TimeoutExpired:
+#                     cp_stdout = ""
+#                     cp_stderr = "Test execution timeout."
+#                     cp_returncode = -1
+#                 # stderr can be very long; truncate it so we dont exceed model limit
+#         stderr_result = str(cp_stderr)
+#         stderr_lines = stderr_result.splitlines()
+#         if len(stderr_lines) > 100:
+#             # take first 50 and last 50 lines
+#             stderr_result = "\n".join(stderr_lines[:50] + ["..."] + stderr_lines[-50:])
+#         return ReproResult(cp_stdout, stderr_result, cp_returncode)
+    
+#     def get_issue_statement(self) -> str:
+#         return self.problem_statement
+    
+#     def setup_project(self) -> None:
+#         pass
+    
+#     def validate(self, patch_content: str) -> tuple[bool,str,str,str]:
+#         with self.apply_patch(patch_content):
+            
+#             pass
+    
+#     @classmethod
+#     def make_noop_patch(cls, project_path: str) -> str:
+        
+#         pass
+
+
+#     def evaluate_reproducer(
+#         self,
+#         reproducer_file: str | PathLike,
+#         developer_patch_file: str | PathLike,
+#         report_dir: str | PathLike,
+#     ) -> None:
+        
+#         pass
         
 
 

@@ -42,10 +42,19 @@ class RawRustTask(RawTask):
         # 'FAIL_TO_PASS', 'PASS_TO_PASS', 'environment_setup_commit']
         self.task_info = task_info
 
-    def dump_meta_data(self, output_dir):
-        return None
-
-
+    def dump_meta_data(self, output_dir: str):
+        meta = {
+            "task_id": self.task_id,
+            "setup_info": self.setup_info,
+            "task_info": self.task_info,
+        }
+        with open(pjoin(output_dir, "meta.json"), "w") as f:
+            json.dump(meta, f, indent=4)
+        with open(pjoin(output_dir, "problem_statement.txt"), "w") as f:
+            f.write(self.task_info["problem_statement"])
+        with open(pjoin(output_dir, "developer_patch.diff"), "w") as f:
+            f.write(self.task_info["patch"])
+    
     @property
     def task_id(self) -> str:
         return self._task_id
@@ -63,11 +72,11 @@ class RawRustTask(RawTask):
             # install_cmd=setup_info["install"],
             # command to run the relevant tests,
             # test_cmd=setup_info["test_cmd"],
-            # commit=task_info["base_commit"],
-            # repo_name=task_info["repo"],
-            # repo_version=task_info["version"],
+            commit=task_info["base_commit"],
+            repo_name=task_info["repo"],
+            repo_version=task_info["version"],
             # modifications to the test suite for this task instance,
-            # test_patch=task_info["test_patch"],
+            test_patch=task_info["test_patch"],
             # testcases_passing=task_info["PASS_TO_PASS"],
             # testcases_failing=task_info["FAIL_TO_PASS"],
         )

@@ -72,7 +72,7 @@ class SearchBackend:
         self.parsed_files.extend(parsed_files)
 
     @classmethod
-    @cache
+    # @cache
     def _build_python_index(cls, project_path: str) -> tuple[
         ClassIndexType,
         ClassFuncIndexType,
@@ -95,24 +95,25 @@ class SearchBackend:
                 continue
             parsed_py_files.append(py_file)
             # extract from file info, and form search index
-            classes, class_to_funcs, top_level_funcs, class_relation_map = file_info
-
+            classes, class_to_funcs, top_level_funcs= file_info
+            print(py_file)
+            if py_file =="/home/riv3r/auto-code-rover/setup/ratatui__ratatui-518/src/widgets/barchart.rs":
+                print(classes, class_to_funcs, top_level_funcs)
             # (1) build class index
             for c, start, end in classes:
                 class_index[c].append((py_file, LineRange(start, end)))
-
             # (2) build class-function index
             for c, class_funcs in class_to_funcs.items():
                 for f, start, end in class_funcs:
                     class_func_index[c][f].append((py_file, LineRange(start, end)))
-
+            # print(class_func_index['Terminal'])
             # (3) build (top-level) function index
             for f, start, end in top_level_funcs:
                 function_index[f].append((py_file, LineRange(start, end)))
 
             # (4) build class-superclass index
-            for (c, start, end), super_classes in class_relation_map.items():
-                class_relation_index[c] = super_classes
+            # for (c, start, end), super_classes in class_relation_map.items():
+            #     class_relation_index[c] = super_classes
 
         return (
             class_index,
@@ -882,7 +883,13 @@ class SearchBackend:
 
 
 if __name__ == "__main__":
-    pass
+    search_backend = SearchBackend("/home/riv3r/auto-code-rover/setup/ratatui__ratatui-518")
+    # res = search_backend.search_code("fn flush(&mut self)")
+
+    res = search_backend.search_class("BarChart")
+    print(res)
+
+
     ## Test parsing of bug locations
     # backend = SearchBackend("/media/media0/yuntong/SWE-bench/testbed/django__django/setup_django__django__3.0")
     # bug_locations = [

@@ -11,7 +11,6 @@ from pathlib import Path
 from shutil import copy2
 from subprocess import DEVNULL, CompletedProcess
 from tempfile import NamedTemporaryFile, TemporaryDirectory, mkstemp
-
 from loguru import logger
 
 try:
@@ -95,34 +94,7 @@ class Task(ABC):
     def execute_reproducer(
         self, test_content: str, patch_content: str | None = None
     ) -> ReproResult:
-        cm = nullcontext() if patch_content is None else self.apply_patch(patch_content)
-        with cm:
-            with NamedTemporaryFile(
-                buffering=0, prefix="reproducer-", suffix=".rs"
-            ) as f:
-                f.write(test_content.encode())
-                try:
-                    cp = run_script_in_docker(
-                        [f.name],
-                        self.docker_name,
-                        text=True,
-                        capture_output=True,
-                        timeout=120,  # 2 min for reproducer should be enough
-                    )
-                    cp_stdout = cp.stdout
-                    cp_stderr = cp.stderr
-                    cp_returncode = cp.returncode
-                except subprocess.TimeoutExpired:
-                    cp_stdout = ""
-                    cp_stderr = "Test execution timeout."
-                    cp_returncode = -1
-                # stderr can be very long; truncate it so we dont exceed model limit
-        stderr_result = str(cp_stderr)
-        stderr_lines = stderr_result.splitlines()
-        if len(stderr_lines) > 100:
-            # take first 50 and last 50 lines
-            stderr_result = "\n".join(stderr_lines[:50] + ["..."] + stderr_lines[-50:])
-        return ReproResult(cp_stdout, stderr_result, cp_returncode)
+        pass
 
 
 @dataclass(kw_only=True)
@@ -130,23 +102,33 @@ class RustTask(Task):
     task_id: str
     problem_statement: str
     repo_path: str
-    # commit: str
+    commit: str
     docker_image_name: str # sweb.eval.x86_64.apache__arrow-rs-6884
-    # repo_name: str
-    # repo_version: str
+    repo_name: str
+    repo_version: str
     # pre_install_cmds: list[str]
     # install_cmd: str
     # test_cmd: str
-    # test_patch: str
+    test_patch: str
     # testcases_passing: list[str]
     # testcases_failing: list[str]
 
+
+    def setup_project(self) -> None:
+        task = self
+        print(task.project_path)
+        with apputils.cd(task.project_path):
+            apputils.repo_reset_and_clean_checkout(task.commit)
+        
+        return None
+        
     @property
     def project_path(self) -> str:
         return self.repo_path
     
     def reset_project(self)-> None:
-        pass
+        with apputils.cd(self.repo_path):
+            apputils.repo_reset_and_clean_checkout(self.commit)
 
     def execute_reproducer(
         self, test_content: str, patch_content: str | None = None
@@ -182,9 +164,6 @@ class RustTask(Task):
     
     def get_issue_statement(self) -> str:
         return self.problem_statement
-    
-    def setup_project(self) -> None:
-        pass
     
     def validate(self, patch_content: str) -> tuple[bool,str,str,str]:
         with self.apply_patch(patch_content):

@@ -187,15 +187,14 @@ def run_script_in_conda(
 def run_script_in_docker(
     rust_file: str, docker_image: str, **kwargs
 ) -> subprocess.CompletedProcess:
-    
     run_cmd = [
         "docker", "run", "--rm",
+        "-v", f"{rust_file}:/temp_reproducer.rs",
         docker_image,
-        "mkdir", "-p", "src/bin",
-        "mv", rust_file, "src/bin/reproducer.rs"
-        "cargo", "run", "--bin", "reproducer",
+        "sh", "-c",
+        "wd=$(pwd); mkdir -p \"$wd/src/bin\"; cat /temp_reproducer.rs > \"$wd/src/bin/reproducer.rs\"; echo \"[package]\nname = \\\"reproducer\\\"\nversion = \\\"0.1.0\\\"\n\" > cargo.toml; cargo run --bin reproducer"
     ]
-    return subprocess.run(run_cmd,**kwargs)
+    return subprocess.run(run_cmd, **kwargs)
 
 def run_string_cmd_in_conda(
     command: str, env_name: str, **kwargs

@@ -102,8 +102,8 @@ def parse_edits(chat_string: str) -> list[Edit]:
             current_edit.append(line)
 
     return edits
-
-
+import pysnooper
+# @pysnooper.snoop()
 def apply_edit(edit: Edit, file_path: str) -> str | None:
     """
     Apply one Edit to a file. This function reads the file, tries to match
@@ -169,18 +169,18 @@ def apply_edit(edit: Edit, file_path: str) -> str | None:
 
     # Second guess: the absolute indentation of the second to last lines are correct. In this case,
     # simply fix the indentation of the first line.
-    fixed_after_lines[1:] = after_lines[1:]
-    new_prog_2 = prefix + "\n".join(fixed_after_lines) + "\n" + suffix
+    # fixed_after_lines[1:] = after_lines[1:]
+    # new_prog_2 = prefix + "\n".join(fixed_after_lines) + "\n" + suffix
 
-    if lint_python_content(new_prog_1):
-        new_prog = new_prog_1
-    elif lint_python_content(new_prog_2):
-        new_prog = new_prog_2
-    else:
-        return None
+    # if lint_python_content(new_prog_1):
+    #     new_prog = new_prog_1
+    # elif lint_python_content(new_prog_2):
+    #     new_prog = new_prog_2
+    # else:
+    #     return None
 
     with open(file_path, "w") as f:
-        f.write(new_prog)
+        f.write(new_prog_1)
 
     return file_path
 
@@ -217,3 +217,31 @@ def lint_python_content(content: str) -> bool:
         _ = Run(["--errors-only", f.name], reporter=reporter, exit=False)
 
     return not any(error.endswith("(syntax-error)") for error in pylint_out.content)
+import subprocess
+import tempfile
+import os
+import pysnooper
+# @pysnooper.snoop()
+def lint_rust_code(code: str, timeout: int = 5) -> bool:
+    with tempfile.NamedTemporaryFile(
+        suffix=".rs",
+        delete=False,
+        mode="w",
+        encoding="utf-8"
+    ) as temp_file:
+        temp_file.write(code)
+        temp_file_path = temp_file.name
+
+    try:
+        result = subprocess.run(
+            ["rustc", temp_file_path, "--edition=2021"],
+            capture_output=True,
+            text=True,
+            timeout=timeout,  # 防止长时间卡住
+            check=False
+        )
+
+        return result.returncode == 0
+
+    finally:
+        os.remove(temp_file_path)

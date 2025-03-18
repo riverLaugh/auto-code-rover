@@ -141,11 +141,7 @@ class RustTask(Task):
 
 
     def setup_project(self) -> None:
-        task = self
-        print(task.project_path)
-        with apputils.cd(task.project_path):
-            apputils.repo_reset_and_clean_checkout(task.commit)
-        
+
         return None
         
     @property
@@ -173,10 +169,14 @@ class RustTask(Task):
         )
         if cp.returncode != 0:
             log_and_print(f"[Warning] Docker image {self.docker_image_name} not found.")
+        task = self
+        print(task.project_path)
+        with apputils.cd(task.project_path):
+            apputils.repo_reset_and_clean_checkout(task.commit)
         
-        # 提交当前更改，以便之后的重置不会丢失它们
-        with apputils.cd(self.repo_path):
-            apputils.repo_commit_current_changes()
+        # # 提交当前更改，以便之后的重置不会丢失它们
+        # with apputils.cd(self.repo_path):
+        #     apputils.repo_commit_current_changes()
     
     def execute_reproducer(
         self, test_content: str, patch_content: str | None = None
@@ -189,7 +189,7 @@ class RustTask(Task):
                 f.write(test_content.encode())
                 try:
                     cp = run_script_in_docker(
-                        [f.name],
+                        f.name,
                         self.docker_image_name,
                         text=True,
                         capture_output=True,
@@ -206,7 +206,7 @@ class RustTask(Task):
         stderr_result = str(cp_stderr)
         stderr_lines = stderr_result.splitlines()
         if len(stderr_lines) > 100:
-            # take first 50 and last 50 lines
+            # take first 50 and last 50 lines 可优化
             stderr_result = "\n".join(stderr_lines[:50] + ["..."] + stderr_lines[-50:])
         return ReproResult(cp_stdout, stderr_result, cp_returncode)
     

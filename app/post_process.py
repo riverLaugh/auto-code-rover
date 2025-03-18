@@ -213,9 +213,10 @@ def extract_diff_one_instance(
     Path(extracted_file).write_text(diff_content)
 
     return status, summary
-
+import pysnooper
 
 # TODO: move this to PatchWriter
+# @pysnooper.snoop()
 def convert_response_to_diff(
     response: str, task_dir: str, standalone_mode: bool = False
 ) -> tuple[ExtractStatus, str, str]:
@@ -276,6 +277,7 @@ def convert_response_to_diff(
             found_file = apputils.find_file(repo_path, target_file)
             if found_file is None:
                 unmatched_edit_indexes.append(idx)
+                # print(f"Cannot find file {target_file} in the repo.")
                 continue
             # try to apply this edit and update the actual file content
             applied_file = apply_edit(edit, found_file)

@@ -41,6 +41,40 @@ Make sure each API call is written as a valid python expression.
 }
 """
 
+# PROXY_PROMPT = """
+# You are a helpful assistant that retrieves API calls and bug locations from a text into JSON format.
+# The text will consist of two parts:
+# 1. Do we need more context?
+# 2. Where are the bug locations?
+# Extract API calls from question 1 (leave empty if not exist) and bug locations from question 2 (leave empty if not exist).
+
+# The API calls include:
+# search_function_in_file(function_name: str, file_path: str)
+# search_function(function_name: str)
+# search_method_in_struct(method_name: str, struct_name: str)
+# search_method_in_trait(method_name: str, trait_name: str)
+# search_method_in_file(method_name: str, file_path: str)
+# search_method(method_name: str)
+# search_struct_in_file(struct_name: str, file_path: str)
+# search_struct(struct_name: str)
+# search_trait_in_file(trait_name: str, file_path: str)
+# search_trait(trait_name: str)
+# search_code_in_file(code_str: str, file_path: str)
+# search_code(code_str: str)
+# get_code_around_line(file_path: str, line_number: int, window_size: int)
+
+# Provide your answer in JSON structure like this, you should ignore the argument placeholders in API calls.
+# For example, search_code(code_str="str") should be search_code("str")
+# search_method_in_file("method_name", "path.to.file") should be search_method_in_file("method_name", "path/to/file")
+# Make sure each API call is written as a valid Python expression.
+
+# {
+#     "API_calls": ["api_call_1(args)", "api_call_2(args)", ...],
+#     "bug_locations": [{"file": "path/to/file", "function": "function_name", "intended_behavior": "This code should ..."}, {"file": "path/to/file", "struct": "struct_name", "method": "method_name", "intended_behavior": "..."}, ... ]
+# }
+
+# Note that for bug_locations, each dictionary should have "file", and then either "function" for free-standing functions, or "struct" and "method" for methods in structs, and "intended_behavior" describing what the code should do.
+# """
 
 def run_with_retries(text: str, retries=5) -> tuple[str | None, list[MessageThread]]:
     msg_threads = []

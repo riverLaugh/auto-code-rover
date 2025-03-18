@@ -96,9 +96,6 @@ class SearchBackend:
             parsed_py_files.append(py_file)
             # extract from file info, and form search index
             classes, class_to_funcs, top_level_funcs= file_info
-            print(py_file)
-            if py_file =="/home/riv3r/auto-code-rover/setup/ratatui__ratatui-518/src/widgets/barchart.rs":
-                print(classes, class_to_funcs, top_level_funcs)
             # (1) build class index
             for c, start, end in classes:
                 class_index[c].append((py_file, LineRange(start, end)))

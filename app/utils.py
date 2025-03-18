@@ -184,16 +184,22 @@ def run_script_in_conda(
     cmd = ["conda", "run", "-n", env_name, "python", *args]
     return subprocess.run(cmd, **kwargs)
 
-def run_script_in_docker(
-    rust_file: str, docker_image: str, **kwargs
-) -> subprocess.CompletedProcess:
+def run_script_in_docker(rust_file: str, docker_image: str, **kwargs) ->subprocess.CompletedProcess:
+    with open(rust_file, "r") as f:
+        rust_content = f.read().replace("'", "'\"'\"'")  # 转义单引号
+
     run_cmd = [
         "docker", "run", "--rm",
-        "-v", f"{rust_file}:/temp_reproducer.rs",
         docker_image,
         "sh", "-c",
-        "wd=$(pwd); mkdir -p \"$wd/src/bin\"; cat /temp_reproducer.rs > \"$wd/src/bin/reproducer.rs\"; echo \"[package]\nname = \\\"reproducer\\\"\nversion = \\\"0.1.0\\\"\n\" > cargo.toml; cargo run --bin reproducer"
+        f"""
+        set -ex;
+        mkdir -p src/bin;
+        printf '%b' '{rust_content}' > src/bin/reproducer.rs;
+        cargo run --bin reproducer
+        """
     ]
+
     return subprocess.run(run_cmd, **kwargs)
 
 def run_string_cmd_in_conda(
@@ -263,8 +269,8 @@ def to_absolute_path(file_path: str, project_root: str) -> str:
         - project_root (str): Absolute path of a root dir.
     """
     return pjoin(project_root, file_path)
-
-
+import pysnooper
+# @pysnooper.snoop()
 def find_file(directory, filename) -> str | None:
     """
     Find a file in a directory. filename can be short name, relative path to the

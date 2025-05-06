@@ -103,6 +103,7 @@ def parse_edits(chat_string: str) -> list[Edit]:
 
     return edits
 import pysnooper
+from check_rust_syntax import check_rust_syntax
 # @pysnooper.snoop()
 def apply_edit(edit: Edit, file_path: str) -> str | None:
     """
@@ -178,9 +179,13 @@ def apply_edit(edit: Edit, file_path: str) -> str | None:
     #     new_prog = new_prog_2
     # else:
     #     return None
+    if check_rust_syntax(new_prog_1):
+        new_prog = new_prog_1
+    else:
+        return None
 
     with open(file_path, "w") as f:
-        f.write(new_prog_1)
+        f.write(new_prog)
 
     return file_path
 

@@ -9,7 +9,7 @@ from os.path import join as pjoin
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from typing import TypeAlias
-
+from unidiff import PatchSet
 from loguru import logger
 
 from app.agents import agent_common
@@ -138,6 +138,7 @@ class PatchAgent:
             applicable, response, diff_content, thread = self._write_patch(
                 history_handles
             )
+            # log_and_print(
             self._request_idx += 1
             print_patch_generation(response)
             Path(self.task_dir, f"patch_raw_{self._request_idx}.md").write_text(
@@ -159,6 +160,43 @@ class PatchAgent:
         raise InvalidLLMResponse(
             f"Failed to write an applicable patch in {retries} attempts"
         )
+
+
+    def get_golden_bug_locations(self,task: Task) -> str:
+        patch = task.patch
+        if not patch:
+            raise ValueError("No patch found in task")
+        
+        # 解析 unidiff 格式的 patch
+        patch_set = PatchSet(patch)
+        if not patch_set:
+            return "No changes found in the patch."
+
+        # 存储格式化后的字符串
+        result_lines = []
+
+        # 遍历每个文件
+        for patched_file in patch_set:
+            file_path = patched_file.path
+            result_lines.append(f"File: {file_path}")
+
+            # 遍历文件中的每个 hunk
+            for hunk in patched_file:
+                start_line = hunk.source_start
+                end_line = hunk.source_start + hunk.source_length - 1 if hunk.source_length > 0 else start_line
+                removed_lines = [line.value.strip() for line in hunk if line.is_removed]
+                added_lines = [line.value.strip() for line in hunk if line.is_added]
+
+                # 描述位置和更改
+                location_info = f"  Lines {start_line}-{end_line}:"
+                if removed_lines:
+                    location_info += f"\n    Source code:\n      " + "\n      ".join(removed_lines)
+                # if added_lines:
+                #     location_info += f"\n    Added code:\n      " + "\n      ".join(added_lines)
+                result_lines.append(location_info)
+
+        # 拼接所有信息为一个字符串
+        return "\n".join(result_lines)
 
     def _write_patch(
         self,
@@ -194,8 +232,9 @@ class PatchAgent:
         extract_status, _, diff_content = convert_response_to_diff(
             patch_resp, self.task_dir
         )
-        record_extract_status(self.task_dir, extract_status)
 
+        record_extract_status(self.task_dir, extract_status)
+        
         return (
             extract_status == ExtractStatus.APPLICABLE_PATCH,
             patch_resp,
@@ -213,10 +252,12 @@ class PatchAgent:
             thread.add_system(SYSTEM_PROMPT)
             thread.add_user(f"Here is the issue:\n{self.issue_stmt}")
             thread.add_user(self._construct_code_context_prompt())
+            # thread.add_user("Here is the correct bug location: "+ self.get_golden_bug_locations(self.task))
         else:
             # bug location not there; we use the search conv history to at least get some context
             messages = deepcopy(self.context_thread.messages)
             thread = MessageThread(messages)
+            # thread.add_user("Here is the correct bug location: "+ self.get_golden_bug_locations(self.task))
             thread = agent_common.replace_system_prompt(thread, SYSTEM_PROMPT)
 
         return thread

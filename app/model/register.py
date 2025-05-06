@@ -8,6 +8,7 @@ from app.model import (
     gptlitellm,
     groq,
     ollama,
+    qwen,
 )
 
 
@@ -68,6 +69,7 @@ def register_all_models() -> None:
 
     common.register_model(gemini.GeminiPro())
     common.register_model(gemini.Gemini15Pro())
-
+    common.register_model(gpt.qwq32b())
+    common.register_model(gpt.qwen2dot5())
     # register default model as selected
     common.SELECTED_MODEL = gpt.Gpt35_Turbo0125()

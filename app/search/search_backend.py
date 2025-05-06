@@ -13,9 +13,14 @@ from app.utils import catch_all_and_log
 LineRange = namedtuple("LineRange", ["start", "end"])
 
 ClassIndexType = MutableMapping[str, list[tuple[str, LineRange]]]
+TraitIndexType = MutableMapping[str, list[tuple[str, LineRange]]]
 ClassFuncIndexType = MutableMapping[
     str, MutableMapping[str, list[tuple[str, LineRange]]]
 ]
+TraitMethodIndexType = MutableMapping[
+    str, MutableMapping[str, list[tuple[str, LineRange]]]
+]
+macroIndexType = MutableMapping[str, list[tuple[str, LineRange]]]
 FuncIndexType = MutableMapping[str, list[tuple[str, LineRange]]]
 ClassRelationIndexType = MutableMapping[str, list[str]]
 
@@ -44,6 +49,14 @@ class SearchBackend:
 
         # function name -> [(file_name, line_range)]
         self.function_index: FuncIndexType = {}
+
+        self.trait_index : TraitIndexType = {}
+
+        self.macro_index : macroIndexType ={}
+
+        self.trait_method_index : TraitMethodIndexType = {}
+
+        
         self._build_index()
 
     def _build_index(self):
@@ -63,12 +76,18 @@ class SearchBackend:
         class_func_index: ClassFuncIndexType,
         function_index: FuncIndexType,
         class_relation_index: ClassRelationIndexType,
+        trait_index: TraitIndexType,
+        trait_method_index: TraitMethodIndexType,
+        macro_index: macroIndexType,
         parsed_files: list[str],
     ) -> None:
         self.class_index.update(class_index)
         self.class_func_index.update(class_func_index)
         self.function_index.update(function_index)
         self.class_relation_index.update(class_relation_index)
+        self.trait_index.update(trait_index)
+        self.trait_method_index.update(trait_method_index)
+        self.macro_index.update(macro_index)
         self.parsed_files.extend(parsed_files)
 
     @classmethod
@@ -78,13 +97,18 @@ class SearchBackend:
         ClassFuncIndexType,
         FuncIndexType,
         ClassRelationIndexType,
+        TraitIndexType,
+        TraitMethodIndexType,
+        macroIndexType,
         list[str],
     ]:
         class_index: ClassIndexType = defaultdict(list)
         class_func_index: ClassFuncIndexType = defaultdict(lambda: defaultdict(list))
         function_index: FuncIndexType = defaultdict(list)
         class_relation_index: ClassRelationIndexType = defaultdict(list)
-
+        trait_index: TraitIndexType = defaultdict(list)
+        trait_method_index: TraitMethodIndexType = defaultdict(lambda: defaultdict(list))
+        macro_index : macroIndexType = defaultdict(list)
         py_files = search_utils.find_python_files(project_path)
         # holds the parsable subset of all py files
         parsed_py_files = []
@@ -95,7 +119,7 @@ class SearchBackend:
                 continue
             parsed_py_files.append(py_file)
             # extract from file info, and form search index
-            classes, class_to_funcs, top_level_funcs= file_info
+            classes, class_to_funcs, top_level_funcs,traits,trait_to_impl,macros,struct_to_trait = file_info
             # (1) build class index
             for c, start, end in classes:
                 class_index[c].append((py_file, LineRange(start, end)))
@@ -108,15 +132,31 @@ class SearchBackend:
             for f, start, end in top_level_funcs:
                 function_index[f].append((py_file, LineRange(start, end)))
 
+            # (4) build trait index
+            for t, start, end in traits:
+                trait_index[t].append((py_file, LineRange(start, end)))
+            
+            # (5) build trait-method index
+            for t, trait_methods in trait_to_impl.items():
+                for m, start, end in trait_methods:
+                    trait_method_index[t][m].append((py_file, LineRange(start, end)))
+
+            # (6) build macro index
+            for m, start, end in macros:
+                macro_index[m].append((py_file, LineRange(start, end)))
+            # print(macro_index)
             # (4) build class-superclass index
-            # for (c, start, end), super_classes in class_relation_map.items():
-            #     class_relation_index[c] = super_classes
+            for (c, start, end), super_classes in struct_to_trait.items():
+                class_relation_index[c] = super_classes
 
         return (
             class_index,
             class_func_index,
             function_index,
             class_relation_index,
+            trait_index,
+            trait_method_index,
+            macro_index,
             parsed_py_files,
         )
 
@@ -163,6 +203,28 @@ class SearchBackend:
         for fname, (start, end) in self.class_func_index[class_name][function_name]:
             func_code = search_utils.get_code_snippets(fname, start, end)
             res = SearchResult(fname, start, end, class_name, function_name, func_code)
+            result.append(res)
+        return result
+
+    def _search_func_in_trait(
+        self, function_name: str, trait_name: str
+    ) -> list[SearchResult]:
+        """
+        Search for the function name in the trait.
+        Args:
+            function_name (str): Name of the function.
+            trait_name (str): Name of the trait.
+        Returns:
+            The list of code snippets searched.
+        """
+        result: list[SearchResult] = []
+        if trait_name not in self.trait_method_index:
+            return result
+        if function_name not in self.trait_method_index[trait_name]:
+            return result
+        for fname, (start, end) in self.trait_method_index[trait_name][function_name]:
+            func_code = search_utils.get_code_snippets(fname, start, end)
+            res = SearchResult(fname, start, end, trait_name, function_name, func_code)
             result.append(res)
         return result
 
@@ -271,7 +333,7 @@ class SearchBackend:
         return tool_result, final_search_res, True
 
     @catch_all_and_log
-    def search_class(self, class_name: str) -> tuple[str, list[SearchResult], bool]:
+    def search_struct(self, class_name: str) -> tuple[str, list[SearchResult], bool]:
         """Search for a class in the codebase.
 
         Only the signature of the class is returned. The class signature
@@ -313,7 +375,7 @@ class SearchBackend:
         return tool_result, final_search_res, True
 
     @catch_all_and_log
-    def search_class_in_file(
+    def search_struct_in_file(
         self, class_name, file_name: str
     ) -> tuple[str, list[SearchResult], bool]:
         """Search for a class in a given file.
@@ -404,7 +466,7 @@ class SearchBackend:
         return tool_output, filtered_res, True
 
     @catch_all_and_log
-    def search_method_in_class(
+    def search_method_in_struct(
         self, method_name: str, class_name: str
     ) -> tuple[str, list[SearchResult], bool]:
         """Search for a method in a given class.
@@ -444,6 +506,206 @@ class SearchBackend:
             tool_output += SearchResult.collapse_to_file_level(rest, self.project_path)
 
         return tool_output, first_five, True
+
+    @catch_all_and_log
+    def search_method_in_trait(self, method_name: str, trait_name: str
+    ) -> tuple[str, list[SearchResult], bool]:
+        """
+        Search for a method in a given trait.
+        Returns the actual code of the method.
+        Args:
+            method_name (string): Name of the method to search for.
+            trait_name (string): Consider only methods in this trait.
+        """
+
+        if trait_name not in self.trait_index:
+            tool_output = f"Could not find trait {trait_name} in the codebase."
+            return tool_output, [], False
+        # has this trait, check its methods
+        search_res: list[SearchResult] = self._search_func_in_trait(
+            method_name, trait_name
+        )
+        if not search_res:
+            tool_output = f"Could not find method {method_name} in trait {trait_name}`."
+            return tool_output, [], False
+        # found some methods, prepare the result
+        tool_output = f"Found {len(search_res)} methods with name {method_name} in trait {trait_name}:\n\n"
+        # There can be multiple classes defined in multiple files, which contain the same method
+        # still trim the result, just in case
+        if len(search_res) > RESULT_SHOW_LIMIT:
+            tool_output += f"Too many results, showing full code for {RESULT_SHOW_LIMIT} of them, and the rest just file names:\n"
+        first_five = search_res[:RESULT_SHOW_LIMIT]
+        for idx, res in enumerate(first_five):
+            res_str = res.to_tagged_str(self.project_path)
+            tool_output += f"- Search result {idx + 1}:\n```\n{res_str}\n```\n"
+        # for the rest, collect the file names into a set
+        if rest := search_res[RESULT_SHOW_LIMIT:]:
+            tool_output += "Other results are in these files:\n"
+            tool_output += SearchResult.collapse_to_file_level(rest, self.project_path)
+        return tool_output, first_five, True
+
+        
+    @catch_all_and_log
+    def search_function_in_file(
+        self, function_name: str, file_name: str
+    )->tuple[str,list[SearchResult],bool]:
+        candidate_py_abs_paths = self._get_candidate_matched_py_files(file_name)
+        if not candidate_py_abs_paths:
+            tool_output = f"Could not find file {file_name} in the codebase."
+            return tool_output, [], False
+
+        # (2) search for this function in the entire code base (we do filtering later)
+        search_res: list[SearchResult] = self._search_top_level_func(function_name)
+        if not search_res:
+            tool_output = f"The function {function_name} does not appear in the codebase."
+            return tool_output, [], False
+        # (3) filter the search result => they need to be in one of the files!
+        filtered_res: list[SearchResult] = [
+            res for res in search_res if res.file_path in candidate_py_abs_paths
+        ]
+        # (4) done with search, now prepare result
+        if not filtered_res:
+            tool_output = (
+                f"There is no function with name `{function_name}` in file {file_name}."
+            )
+            return tool_output, [], False
+        tool_output = f"Found {len(filtered_res)} functions with name `{function_name}` in file {file_name}:\n\n"
+        # when searching for a function in one file, it's rare that there are
+        # many candidates, so we do not trim the result
+        for idx, res in enumerate(filtered_res):
+            res_str = res.to_tagged_str(self.project_path)
+            tool_output += f"- Search result {idx + 1}:\n```\n{res_str}\n```\n"
+        return tool_output, filtered_res, True
+        
+
+    @catch_all_and_log
+    def search_function(self, function_name: str) -> tuple[str, list[SearchResult], bool]:
+        search_res: list[SearchResult] = self._search_top_level_func(function_name)
+        if not search_res:
+            tool_output = f"The function {function_name} does not appear in the codebase."
+            return tool_output, [], False
+        
+        if len(search_res) > RESULT_SHOW_LIMIT:
+            tool_output += "They appeared in the following files:\n"
+            tool_output += SearchResult.collapse_to_file_level(
+                search_res, self.project_path
+            )
+        else:
+            for idx, res in enumerate(search_res):
+                res_str = res.to_tagged_str(self.project_path)
+                tool_output += f"- Search result {idx + 1}:\n```\n{res_str}\n```\n"
+
+        final_search_res = search_res[:RESULT_SHOW_LIMIT]
+        return tool_output, final_search_res, True
+
+    @catch_all_and_log
+    def search_trait_in_file(self,trait_name: str, file_name: str) -> tuple[str, list[SearchResult], bool]:
+
+        search_res: list[SearchResult] = []
+        # (1) check whether we can get the file
+        candidate_py_abs_paths = self._get_candidate_matched_py_files(file_name)
+        if not candidate_py_abs_paths:
+            tool_output = f"Could not find file {file_name} in the codebase."
+            return tool_output, search_res, False
+        # (2) search for this trait in the entire code base (we do filtering later)
+        if trait_name not in self.trait_index:
+            tool_output = f"Could not find trait {trait_name} in the codebase."
+            return tool_output, search_res, False
+        # (3) trait is there, check its methods
+        for fname, (start, end) in self.trait_index[trait_name]:
+            if fname in candidate_py_abs_paths:
+                trait_code = search_utils.get_code_snippets(fname, start, end)
+                res = SearchResult(fname, start, end, trait_name, None, trait_code)
+                search_res.append(res)
+        if not search_res:
+            tool_output = f"Could not find trait {trait_name} in file {file_name}."
+            return tool_output, search_res, False
+        # good path; we have result, now just form a response
+        tool_output = f"Found {len(search_res)} traits with name {trait_name} in file {file_name}:\n\n"
+        for idx, res in enumerate(search_res):
+            res_str = res.to_tagged_str(self.project_path)
+            tool_output += f"- Search result {idx + 1}:\n```\n{res_str}\n```\n"
+        return tool_output, search_res, True
+    
+    @catch_all_and_log
+    def search_trait(self, trait_name: str) -> tuple[str, list[SearchResult], bool]:
+        search_res: list[SearchResult] = []
+        tool_result = f"Could not find trait {trait_name} in the codebase."
+        if trait_name not in self.trait_index:
+            return tool_result, search_res, False
+        for fname, (start, end) in self.trait_index[trait_name]:
+            code = search_utils.get_code_snippets(fname, start, end)
+            res = SearchResult(fname, start, end, trait_name, None, code)
+            search_res.append(res)
+        if not search_res:
+            return tool_result, search_res, False
+        # the good path
+        # for all the searched result, append them and form the final result
+        tool_result = f"Found {len(search_res)} traits with name {trait_name} in the codebase:\n\n"
+        if len(search_res) > RESULT_SHOW_LIMIT:
+            tool_result += "They appeared in the following files:\n"
+            tool_result += SearchResult.collapse_to_file_level(
+                search_res, self.project_path
+            )
+        else:
+            for idx, res in enumerate(search_res):
+                res_str = res.to_tagged_str(self.project_path)
+                tool_result += f"- Search result {idx + 1}:\n```\n{res_str}\n```\n"
+        final_search_res = search_res[:RESULT_SHOW_LIMIT]
+        return tool_result, final_search_res, True
+
+    def search_macro(self,macro_name: str) -> tuple[str, list[SearchResult], bool]:
+        search_res: list[SearchResult] = []
+        tool_result = f"Could not find macro {macro_name} in the codebase."
+        if macro_name not in self.macro_index:
+            return tool_result, search_res, False
+        for fname, (start, end) in self.macro_index[macro_name]:
+            code = search_utils.get_code_snippets(fname, start, end)
+            res = SearchResult(fname, start, end, macro_name, None, code)
+            search_res.append(res)
+        if not search_res:
+            return tool_result, search_res, False
+        # the good path
+        # for all the searched result, append them and form the final result
+        tool_result = f"Found {len(search_res)} macros with name {macro_name} in the codebase:\n\n"
+        if len(search_res) > RESULT_SHOW_LIMIT:
+            tool_result += "They appeared in the following files:\n"
+            tool_result += SearchResult.collapse_to_file_level(
+                search_res, self.project_path
+            )
+        else:
+            for idx, res in enumerate(search_res):
+                res_str = res.to_tagged_str(self.project_path)
+                tool_result += f"- Search result {idx + 1}:\n```\n{res_str}\n```\n"
+        final_search_res = search_res[:RESULT_SHOW_LIMIT]
+        return tool_result, final_search_res, True
+
+    def search_macro_in_file(self,macro_name: str, file_name: str) -> tuple[str, list[SearchResult], bool]:
+        search_res: list[SearchResult] = []
+        # (1) check whether we can get the file
+        candidate_py_abs_paths = self._get_candidate_matched_py_files(file_name)
+        if not candidate_py_abs_paths:
+            tool_output = f"Could not find file {file_name} in the codebase."
+            return tool_output, search_res, False
+        # (2) search for this macro in the entire code base (we do filtering later)
+        if macro_name not in self.macro_index:
+            tool_output = f"Could not find macro {macro_name} in the codebase."
+            return tool_output, search_res, False
+        # (3) macro is there, check its methods
+        for fname, (start, end) in self.macro_index[macro_name]:
+            if fname in candidate_py_abs_paths:
+                macro_code = search_utils.get_code_snippets(fname, start, end)
+                res = SearchResult(fname, start, end, macro_name, None, macro_code)
+                search_res.append(res)
+        if not search_res:
+            tool_output = f"Could not find macro {macro_name} in file {file_name}."
+            return tool_output, search_res, False
+        # good path; we have result, now just form a response
+        tool_output = f"Found {len(search_res)} macros with name {macro_name} in file {file_name}:\n\n"
+        for idx, res in enumerate(search_res):
+            res_str = res.to_tagged_str(self.project_path)
+            tool_output += f"- Search result {idx + 1}:\n```\n{res_str}\n```\n"
+        return tool_output, search_res, True
 
     @catch_all_and_log
     def search_method(self, method_name: str) -> tuple[str, list[SearchResult], bool]:
@@ -880,10 +1142,13 @@ class SearchBackend:
 
 
 if __name__ == "__main__":
-    search_backend = SearchBackend("/home/riv3r/auto-code-rover/setup/ratatui__ratatui-518")
+    search_backend = SearchBackend("/home/riv3r/auto-code-rover/setup/bitflags")
     # res = search_backend.search_code("fn flush(&mut self)")
 
-    res = search_backend.search_class("BarChart")
+    # res = search_backend.search_struct("BarChart")
+    # res = search_backend.search_method_in_struct("render", "BarChart")
+    # res = search_backend.search_method_in_trait("render","Widget")
+    res = search_backend.search_macro("__impl_public_bitflags_forward")
     print(res)
 
 

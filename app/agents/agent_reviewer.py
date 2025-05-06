@@ -181,10 +181,13 @@ def run_with_retries(
     prefix_thread.add_user(question)
 
     for _ in range(1, retries + 1):
-        response, *_ = common.SELECTED_MODEL.call(
-            prefix_thread.to_msg(), response_format="json_object"
-        )
+        # response, *_ = common.SELECTED_MODEL.call(
+        #     prefix_thread.to_msg(), response_format="json_object"
+        # )
 
+        response, *_ = common.SELECTED_MODEL.call(
+            prefix_thread.to_msg()
+        )
         thread = deepcopy(prefix_thread)
         thread.add_model(response, [])
         # TODO: print

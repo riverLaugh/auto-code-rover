@@ -97,7 +97,7 @@ class Task(ABC):
         cm = nullcontext() if patch_content is None else self.apply_patch(patch_content)
         with cm:
             with NamedTemporaryFile(
-                buffering=0, prefix="reproducer-", suffix=".rs"
+                buffering=0, prefix="reproducer-", suffix=".sh"
             ) as f:
                 f.write(test_content.encode())
                 try:
@@ -132,6 +132,7 @@ class RustTask(Task):
     docker_image_name: str # sweb.eval.x86_64.apache__arrow-rs-6884
     repo_name: str
     repo_version: str
+    patch:str
     # pre_install_cmds: list[str]
     # install_cmd: str
     # test_cmd: str
@@ -184,7 +185,7 @@ class RustTask(Task):
         cm = nullcontext() if patch_content is None else self.apply_patch(patch_content)
         with cm:
             with NamedTemporaryFile(
-                buffering=0, prefix="reproducer-", suffix=".rs"
+                buffering=0, prefix="reproducer-", suffix=".sh"
             ) as f:
                 f.write(test_content.encode())
                 try:

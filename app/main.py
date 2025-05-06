@@ -320,7 +320,7 @@ def add_task_related_args(parser: ArgumentParser) -> None:
     parser.add_argument(
         "--num-processes",
         type=str,
-        default=1,
+        default=4,
         help="Number of processes to run the tasks in parallel.",
     )
 

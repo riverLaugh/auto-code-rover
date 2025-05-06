@@ -1,0 +1,25 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#fc19bd",
+        "activityBar.background": "#fc19bd",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#455e01",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "commandCenter.border": "#e7e7e799",
+        "sash.hoverBorder": "#fc19bd",
+        "statusBar.background": "#df03a2",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#fc19bd",
+        "statusBarItem.remoteBackground": "#df03a2",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#df03a2",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#df03a299",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.remoteColor": "#df03a2",
+    "python.analysis.extraPaths": [
+        "./app"
+    ]
+}

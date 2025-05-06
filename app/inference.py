@@ -23,6 +23,7 @@ from app.log import print_banner, print_issue
 from app.manage import ProjectApiManager
 from app.model.common import set_model
 from app.task import Task
+from unidiff import PatchSet
 
 
 def write_patch_iterative_with_review(
@@ -34,7 +35,8 @@ def write_patch_iterative_with_review(
     logger.info("Start generating patches with reviewer")
     patch_gen = review_manager.generator()
 
-    eval_summary = None
+    # eval_summary = 
+    # eval_summary = f"here is the correct bug location: {get_golden_bug_locations(task)}"
     for _ in range(retries):
         try:
             patch_handle, patch_content = patch_gen.send(eval_summary)
@@ -259,7 +261,6 @@ def may_pass_regression_tests(task: Task, patch_file: str | PathLike) -> bool:
 
     return pass_evaluation
 
-
 def _run_one_task(
     output_dir: str, api_manager: ProjectApiManager, problem_stmt: str
 ) -> bool:
@@ -273,6 +274,7 @@ def _run_one_task(
     repro_stderr = ""
     reproduced = False
     reproduced_test_content = None
+    sbfl_result = ""
     try:
         test_handle, test_content, orig_repro_result = (
             test_agent.write_reproducing_test_without_feedback()
@@ -304,7 +306,7 @@ def _run_one_task(
     bug_locs, search_msg_thread = api_manager.search_manager.search_iterative(
         api_manager.task, sbfl_result, repro_stderr, reproduced_test_content
     )
-
+    # bug_locs = get_golden_bug_locations(api_manager.task)
     logger.info("Search completed. Bug locations: {}", bug_locs)
 
     # logger.info("Additional class context code: {}", class_context_code)

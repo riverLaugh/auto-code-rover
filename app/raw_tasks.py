@@ -72,6 +72,7 @@ class RawRustTask(RawTask):
             # install_cmd=setup_info["install"],
             # command to run the relevant tests,
             # test_cmd=setup_info["test_cmd"],
+            patch=task_info["patch"],
             commit=task_info["base_commit"],
             repo_name=task_info["repo"],
             repo_version=task_info["version"],

@@ -184,19 +184,23 @@ def run_script_in_conda(
     cmd = ["conda", "run", "-n", env_name, "python", *args]
     return subprocess.run(cmd, **kwargs)
 
-def run_script_in_docker(rust_file: str, docker_image: str, **kwargs) ->subprocess.CompletedProcess:
-    with open(rust_file, "r") as f:
-        rust_content = f.read().replace("'", "'\"'\"'")  # 转义单引号
+def run_script_in_docker(sh_file_path: str, docker_image: str, **kwargs) -> subprocess.CompletedProcess:
+
+    if not os.path.isfile(sh_file_path):
+        raise FileNotFoundError(f"Script file not found: {sh_file_path}")
+
+    # 获取文件名，构造容器内临时路径
+    script_name = os.path.basename(sh_file_path)
+    temp_script_path = f"/testbed/{script_name}"
 
     run_cmd = [
         "docker", "run", "--rm",
+        "-v", f"{os.path.abspath(sh_file_path)}:{temp_script_path}",
         docker_image,
         "sh", "-c",
         f"""
-        set -ex;
-        mkdir -p src/bin;
-        printf '%b' '{rust_content}' > src/bin/reproducer.rs;
-        cargo run --bin reproducer
+        chmod +x {temp_script_path};
+        {temp_script_path}
         """
     ]
 

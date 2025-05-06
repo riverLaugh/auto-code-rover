@@ -14,43 +14,18 @@ from app.data_structures import MessageThread, ReproResult
 from app.log import print_acr, print_reproducer
 from app.model.gpt import common
 from app.task import Task
+from app.repo_utils.repository_structure import get_git_repo_structure_from_url
 
 SYSTEM_PROMPT = (
     "You are an experienced software engineer responsible for reproducing given issues."
 )
-# INITIAL_REQUEST = (
-#     "Please try to write a standalone python file `reproducer.py` to reproduce"
-#     " the issue. Put the file in a code block.\n\n"
-#     "The file would be put in the root directory of the project and executed"
-#     " by `python3 reproducer.py`. The script should raise an `AssertionError` when"
-#     " the issue is present and print a stack trace of the issue. The script should also"
-#     " exit with code 0 when the issue is fixed.\n\n"
-#     # Reformat the stacktrace, so that context retrieval agent can
-#     # get the line numbers right later
-#     "Please use the following function to print the stack trace, so that the line numbers"
-#     " of the statements are shown clearly:\n"
-#     "```\n"
-#     "def print_stacktrace(e: Exception):\n"
-#     "    import traceback"
-#     "    import sys"
-#     "    tb = traceback.extract_tb(e.__traceback__)\n"
-#     '    print("Traceback (most recent call last):", file=sys.stderr)\n'
-#     "    for frame in tb:\n"
-#     "        line_number = frame.lineno\n"
-#     '        code_context = frame.line.strip() if frame.line else "Unknown"\n'
-#     "        print(f'  File \"{frame.filename}\"', file=sys.stderr)\n"
-#     '        print(f"    {line_number}: {code_context}", file=sys.stderr)\n'
-#     '    print(f"{e.__class__.__name__}: {e}", file=sys.stderr)\n'
-#     "```\n"
-# )
 
 INITIAL_REQUEST = (
-    "Please try to write a standalone Rust file `reproducer.rs` to reproduce the issue. "
+    "Please try to write a standalone rust test file to reproduce the issue."
     "Put the file in a code block.\n\n"
-    "The file would be put in the root directory of the project and compiled and executed "
-    "using `cargo run --bin reproducer`. The script should panic when the issue is present, "
-    "and the panic message should include a stack trace of the issue. The script should "
-    "exit successfully (without panicking) when the issue is fixed.\n\n"
+    "The file would be put in the bin directory of the project and compiled and executed using \"cargo run --bin <filename>\"."
+    "The test should panic or fail when the issue is present, and the panci message should include a stack trace of the issue."
+    "The script should exit successfully (without panicking) when the issue is fixed.\n\n"
     "Please use the following function to print the stack trace, so that the line numbers "
     "of the statements are shown clearly:\n"
     "\n"
@@ -60,9 +35,10 @@ INITIAL_REQUEST = (
     "    eprintln!(\"Stack trace:\\n{:?}\", backtrace);\n"
     "}\n"
     "\n"
-    "When the issue is present, the script should panic with a descriptive message, and the "
+    "When the issue is present, the script should panic with a descriptive message, and the"
     "stack trace should be printed using the `print_stacktrace` function. When the issue "
     "is fixed, the script should exit successfully without panicking.\n"
+    # "In order to run the test, the script must have the main function.\n"
 )
 
 class NoReproductionStep(RuntimeError):
@@ -172,7 +148,7 @@ class TestAgent:
             response, *_ = common.SELECTED_MODEL.call(
                 prefix_thread.to_msg(), response_format="json_object"
             )
-
+            print(response)
             result = json.loads(response)[key]
 
             if not isinstance(result, bool):
@@ -201,10 +177,27 @@ class TestAgent:
         self, history_handles: list[TestHandle] | None = None
     ) -> tuple[str, str | None, MessageThread]:
         history_handles = history_handles or []
+        repo = self.task.repo_name
+        url = "https://github.com/"+repo+".git"
+        structure = get_git_repo_structure_from_url(url)
+        quest_location=(
+        f"""
+        Please try to write a bash script to reproduce the issue.
+        Put the script in a ```bash code block.
 
+        The script should run from the root directory of a Rust workspace and include the following steps:
+        - Locate a suitable 'bin' directory in the project (default to 'bin/' in the workspace root unless the project structure suggests a specific crate's 'bin/' directory).
+        - Write the reproducer code to 'bin/reproducer.rs' in the chosen directory.
+        - Compile and run the reproducer using 'cargo run --bin reproducer'.
+        - If the issue is present, the script should exit with a non-zero code, print a descriptive error message, and include the stack trace from the Rust reproducer's `print_stacktrace` function.
+        - If the issue is fixed, the script should exit successfully with a zero code.
+        Here is the directory structure of the project:
+        {structure}
+        """
+        )
         thread = self._construct_init_thread()
         if any(handle in self._feedbacks for handle in history_handles):
-            thread.add_user(INITIAL_REQUEST)
+            thread.add_user(quest_location)
         for handle in history_handles:
             if feedbacks := self._feedbacks.get(handle, []):
                 thread.add_model(self._responses[handle], [])
@@ -212,10 +205,11 @@ class TestAgent:
                     thread.add_user(feedback)
             else:
                 logger.warning("test {} does not have a feedback; skipping", handle)
-        thread.add_user(INITIAL_REQUEST)
 
+        thread.add_user(quest_location)
+        # thread.add_user("Please try again.")
         if not history_handles:
-            print_acr(INITIAL_REQUEST)
+            print_acr(quest_location)
 
         response, *_ = common.SELECTED_MODEL.call(thread.to_msg())
 
@@ -280,7 +274,7 @@ class TestAgent:
 
         if len(blocks) == 1:
             return blocks[0]
-        elif len(blocks) == 2 and blocks[1].strip() == "python3 reproducer.py":
+        elif len(blocks) == 2 and blocks[0].startswith("```bash"):
             return blocks[0]
         else:
             return None
@@ -294,12 +288,14 @@ def generator(
 ) -> Generator[tuple[str, MessageThread, bool], str | None, None]:
     prefix_thread = MessageThread()
     prefix_thread.add_system(SYSTEM_PROMPT)
-
+    # issue_statement = task.get_issue_statement()
     prompt = f"Here is an issue:\n\n{issue_statement}"
     prefix_thread.add_user(prompt)
     # print_acr(prompt, "reproducer test generation")
-
     prefix_thread.add_user(INITIAL_REQUEST)
+
+    # prefix_thread.add_user(quest_location)
+
     print_acr(INITIAL_REQUEST, "reproducer test generation")
 
     threads = []
@@ -316,7 +312,7 @@ def generator(
 
         threads.append(thread)
 
-        code_blocks = extract_markdown_code_blocks(response)
+        code_blocks, = extract_markdown_code_blocks(response)
 
         if len(code_blocks) != 1:
             _ = yield "", thread, False

@@ -68,7 +68,8 @@ class OpenaiModel(Model):
         """
         if self.client is None:
             key = self.check_api_key()
-            self.client = OpenAI(api_key=key,base_url="https://api5.xhub.chat/v1/")
+            base_url = self.check_base_url()
+            self.client = OpenAI(api_key=key,base_url=base_url)
 
     def check_api_key(self) -> str:
         key = os.getenv("OPENAI_KEY")
@@ -76,6 +77,13 @@ class OpenaiModel(Model):
             print("Please set the OPENAI_KEY env var")
             sys.exit(1)
         return key
+
+    def check_base_url(self) -> str:
+        base_url = os.getenv("OPENAI_BASE_URL")
+        if not base_url:
+            print("Please set the OPENAI_BASE_URL env var")
+            sys.exit(1)
+        return base_url
 
     def extract_resp_content(
         self, chat_completion_message: ChatCompletionMessage
@@ -221,7 +229,7 @@ class OpenaiModel(Model):
             common.thread_cost.process_output_tokens += output_tokens
 
             raw_response = response.choices[0].message
-            # log_and_print(f"Raw model response: {raw_response}")
+            log_and_print(f"Raw model response: {raw_response}")
             content = self.extract_resp_content(raw_response)
             raw_tool_calls = raw_response.tool_calls
             func_call_intents = self.extract_resp_func_calls(raw_response)
@@ -354,3 +362,17 @@ class Gpt4_0613(OpenaiModel):
 class Gpt4o_mini_20240718(OpenaiModel):
     def __init__(self):
         super().__init__("gpt-4o-mini-2024-07-18", 4096, 0.00000015, 0.0000006)
+
+class qwq32b(OpenaiModel):
+    def __init__(self):
+        super().__init__(
+            "QwQ-32B", 16384, 0.0000025, 0.000010, parallel_tool_call=True
+        )
+        self.note = "Multimodal model. Up to Apr 2023."
+
+class qwen2dot5(OpenaiModel):
+    def __init__(self):
+        super().__init__(
+            "qwen2.5:32b-instruct-fp8", 4096, 0.0000025, 0.000010, parallel_tool_call=True
+        )
+        self.note = "Multimodal model. Up to Apr 2023."

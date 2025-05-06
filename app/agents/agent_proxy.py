@@ -4,77 +4,83 @@ A proxy agent. Process raw response into json format.
 
 import inspect
 from typing import Any
-
+import openai
 from loguru import logger
-
+from openai import BaseModel
 from app.data_structures import MessageThread
+from app.log import log_and_print
 from app.model import common
 from app.post_process import ExtractStatus, is_valid_json
 from app.search.search_backend import SearchBackend
 from app.utils import parse_function_invocation
-
-PROXY_PROMPT = """
-You are a helpful assistant that retreive API calls and bug locations from a text into json format.
-The text will consist of two parts:
-1. do we need more context?
-2. where are bug locations?
-Extract API calls from question 1 (leave empty if not exist) and bug locations from question 2 (leave empty if not exist).
-
-The API calls include:
-search_method_in_class(method_name: str, class_name: str)
-search_method_in_file(method_name: str, file_path: str)
-search_method(method_name: str)
-search_class_in_file(self, class_name, file_name: str)
-search_class(class_name: str)
-search_code_in_file(code_str: str, file_path: str)
-search_code(code_str: str)
-get_code_around_line(file_path: str, line_number: int, window_size: int)
-
-Provide your answer in JSON structure like this, you should ignore the argument placeholders in api calls.
-For example, search_code(code_str="str") should be search_code("str")
-search_method_in_file("method_name", "path.to.file") should be search_method_in_file("method_name", "path/to/file")
-Make sure each API call is written as a valid python expression.
-
-{
-    "API_calls": ["api_call_1(args)", "api_call_2(args)", ...],
-    "bug_locations":[{"file": "path/to/file", "class": "class_name", "method": "method_name", "intended_behavior", "This code should ..."}, {"file": "path/to/file", "class": "class_name", "method": "method_name", "intended_behavior": "..."} ... ]
-}
-"""
-
+import os
 # PROXY_PROMPT = """
-# You are a helpful assistant that retrieves API calls and bug locations from a text into JSON format.
+# You are a helpful assistant that retrieve API calls and bug locations from a text into json format.
 # The text will consist of two parts:
-# 1. Do we need more context?
-# 2. Where are the bug locations?
+# 1. do we need more context?
+# 2. where are bug locations?
 # Extract API calls from question 1 (leave empty if not exist) and bug locations from question 2 (leave empty if not exist).
 
 # The API calls include:
-# search_function_in_file(function_name: str, file_path: str)
-# search_function(function_name: str)
-# search_method_in_struct(method_name: str, struct_name: str)
-# search_method_in_trait(method_name: str, trait_name: str)
+# search_method_in_class(method_name: str, class_name: str)
 # search_method_in_file(method_name: str, file_path: str)
 # search_method(method_name: str)
-# search_struct_in_file(struct_name: str, file_path: str)
-# search_struct(struct_name: str)
-# search_trait_in_file(trait_name: str, file_path: str)
-# search_trait(trait_name: str)
+# search_class_in_file(self, class_name, file_name: str)
+# search_class(class_name: str)
 # search_code_in_file(code_str: str, file_path: str)
 # search_code(code_str: str)
 # get_code_around_line(file_path: str, line_number: int, window_size: int)
 
-# Provide your answer in JSON structure like this, you should ignore the argument placeholders in API calls.
+# Provide your answer in JSON structure like this, you should ignore the argument placeholders in api calls.
 # For example, search_code(code_str="str") should be search_code("str")
 # search_method_in_file("method_name", "path.to.file") should be search_method_in_file("method_name", "path/to/file")
-# Make sure each API call is written as a valid Python expression.
+# Make sure each API call is written as a valid python expression.
 
 # {
 #     "API_calls": ["api_call_1(args)", "api_call_2(args)", ...],
-#     "bug_locations": [{"file": "path/to/file", "function": "function_name", "intended_behavior": "This code should ..."}, {"file": "path/to/file", "struct": "struct_name", "method": "method_name", "intended_behavior": "..."}, ... ]
+#     "bug_locations":[{"file": "path/to/file", "class": "class_name", "method": "method_name", "intended_behavior", "This code should ..."}, {"file": "path/to/file", "class": "class_name", "method": "method_name", "intended_behavior": "..."} ... ]
 # }
-
-# Note that for bug_locations, each dictionary should have "file", and then either "function" for free-standing functions, or "struct" and "method" for methods in structs, and "intended_behavior" describing what the code should do.
 # """
+
+class API_CALLS(BaseModel):
+    API_calls : list[str]
+    bug_locations : list[dict[str, str]]
+
+PROXY_PROMPT = """
+You are a helpful assistant that retrieves API calls and bug locations from a text into JSON format.
+The text will consist of two parts:
+1. Do we need more context?
+2. Where are the bug locations?
+Extract API calls from question 1 (leave empty if not exist) and bug locations from question 2 (leave empty if not exist).
+
+The API calls include:
+search_macro(macro_name: str)
+search_macro_in_file(macro_name: str, file_path: str)
+search_function(function_name: str)
+search_function_in_file(function_name: str, file_path: str)
+search_method(method_name: str)
+search_method_in_struct(method_name: str, struct_name: str)
+search_method_in_trait(method_name: str, trait_name: str)
+search_method_in_file(method_name: str, file_path: str)
+search_struct_in_file(struct_name: str, file_path: str)
+search_struct(struct_name: str)
+search_trait_in_file(trait_name: str, file_path: str)
+search_trait(trait_name: str)
+search_code_in_file(code_str: str, file_path: str)
+search_code(code_str: str)
+get_code_around_line(file_path: str, line_number: int, window_size: int)
+
+Provide your answer in JSON structure like this, you should ignore the argument placeholders in API calls.
+For example, search_code(code_str="str") should be search_code("str")
+search_method_in_file("method_name", "path.to.file") should be search_method_in_file("method_name", "path/to/file")
+Make sure each API call is written as a valid Python expression.
+
+{
+    "API_calls": ["api_call_1(args)", "api_call_2(args)", ...],
+    "bug_locations": [{"file": "path/to/file", "function": "function_name", "intended_behavior": "This code should ..."}, {"file": "path/to/file", "struct": "struct_name", "method": "method_name", "intended_behavior": "..."}, ... ]
+}
+Note that for bug_locations, each dictionary should have "file", and then either "function" for free-standing functions, or "struct" and "method" for methods in structs, and "intended_behavior" describing what the code should do.
+"""
 
 def run_with_retries(text: str, retries=5) -> tuple[str | None, list[MessageThread]]:
     msg_threads = []
@@ -112,6 +118,35 @@ def run(text: str) -> tuple[str, MessageThread]:
     msg_thread = MessageThread()
     msg_thread.add_system(PROXY_PROMPT)
     msg_thread.add_user(text)
+
+    # client = openai.OpenAI(
+    #     api_key=os.getenv("OPENAI_API_KEY"),
+    #     base_url=os.getenv("OPENAI_BASE_URL"),
+    # )
+    # print("base_url", os.getenv("OPENAI_BASE_URL"))
+    # for _ in range(3):
+    #     try:
+    #         completion = client.beta.chat.completions.parse(
+    #             model=common.SELECTED_MODEL.name,
+    #             messages=msg_thread.to_msg(),
+    #             temperature=common.MODEL_TEMP,
+    #             response_format=API_CALLS,
+    #         )
+    #         log_and_print(
+    #             f"Raw model response: {completion.choices[0].message}"
+    #         )
+    #         res_text = completion.choices[0].message.parsed
+    #         break
+    #     except Exception as e:
+    #         logger.debug(
+    #             "Error when calling the model: {}. Retrying...",
+    #             e,
+    #         )
+    #         res_text = None
+    #         continue
+    # if res_text is None:
+    #     logger.debug("Failed to get a response from the model.")
+    # res_text = res_text.model_dump_json(indent=4)
     res_text, *_ = common.SELECTED_MODEL.call(
         msg_thread.to_msg(), response_format="json_object"
     )

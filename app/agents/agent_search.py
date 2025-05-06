@@ -22,21 +22,40 @@ Do not worry about test files or writing test; you are only interested in crafti
 """
 
 
+# SELECT_PROMPT = (
+#     "Based on the files, classes, methods, and code statements from the issue related to the bug, you can use the following search APIs to get more context of the project."
+#     "\n- search_class(class_name: str): Search for a class in the codebase."
+#     "\n- search_class_in_file(self, class_name, file_name: str): Search for a class in a given file."
+#     "\n- search_method_in_file(method_name: str, file_path: str): Search for a method in a given file.."
+#     "\n- search_method_in_class(method_name: str, class_name: str): Search for a method in a given class."
+#     "\n- search_method(method_name: str): Search for a method in the entire codebase."
+#     "\n- search_code(code_str: str): Search for a code snippet in the entire codebase."
+#     "\n- search_code_in_file(code_str: str, file_path: str): Search for a code snippet in a given file file."
+#     "\n- get_code_around_line(file_path: str, line_number: int, window_size: int): Get the code around a given line number in a file. window_size is the number of lines before and after the line number."
+#     "\n\nYou must give correct number of arguments when invoking API calls."
+#     "\n\nNote that you can use multiple search APIs in one round."
+#     "\n\nNow analyze the issue and select necessary APIs to get more context of the project. Each API call must have concrete arguments as inputs."
+# )
+
 SELECT_PROMPT = (
     "Based on the files, classes, methods, and code statements from the issue related to the bug, you can use the following search APIs to get more context of the project."
-    "\n- search_class(class_name: str): Search for a class in the codebase."
-    "\n- search_class_in_file(self, class_name, file_name: str): Search for a class in a given file."
-    "\n- search_method_in_file(method_name: str, file_path: str): Search for a method in a given file.."
-    "\n- search_method_in_class(method_name: str, class_name: str): Search for a method in a given class."
+    "\n- search_function_in_file(function_name: str, file_path: str): Search for a function in a given file."
+    "\n- search_function(function_name: str): Search for a function in the entire codebase."
+    "\n- search_method_in_struct(method_name: str, struct_name: str): Search for a method in a given struct."
+    "\n- search_method_in_trait(method_name: str, trait_name: str): Search for a method in a given trait."
+    "\n- search_method_in_file(method_name: str, file_path: str): Search for a method in a given file."
     "\n- search_method(method_name: str): Search for a method in the entire codebase."
+    "\n- search_struct_in_file(struct_name: str, file_path: str): Search for a struct in a given file."
+    "\n- search_struct(struct_name: str): Search for a struct in the entire codebase."
+    "\n- search_trait_in_file(trait_name: str, file_path: str): Search for a trait in a given file."
+    "\n- search_trait(trait_name: str): Search for a trait in the entire codebase."
+    "\n- search_code_in_file(code_str: str, file_path: str): Search for a code snippet in a given file."
     "\n- search_code(code_str: str): Search for a code snippet in the entire codebase."
-    "\n- search_code_in_file(code_str: str, file_path: str): Search for a code snippet in a given file file."
     "\n- get_code_around_line(file_path: str, line_number: int, window_size: int): Get the code around a given line number in a file. window_size is the number of lines before and after the line number."
     "\n\nYou must give correct number of arguments when invoking API calls."
     "\n\nNote that you can use multiple search APIs in one round."
     "\n\nNow analyze the issue and select necessary APIs to get more context of the project. Each API call must have concrete arguments as inputs."
 )
-
 
 ANALYZE_PROMPT = (
     "Let's analyze collected context first.\n"
@@ -60,6 +79,7 @@ ANALYZE_AND_SELECT_PROMPT = (
     "If you want to add a method to a class, you should only provide the file and class as bug location, "
     "and describe the new method in intended behavior. "
     "If you still need more context, LEAVE THIS EMPTY."
+    "If you feel the message is sufficient, feel free to let me know. Too much information can overwhelm the model."
 )
 
 

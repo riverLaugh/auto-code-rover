@@ -1,5 +1,5 @@
 [package]
-name = "parser"
+name = "rust_parser"
 version = "0.1.0"
 edition = "2021"
 
@@ -12,7 +12,7 @@ proc-macro2 = {version = "1.0.94", features = ["span-locations"]}
 quote = "1.0.40"
 
 [lib]
-name = "parser"
+name = "rust_parser"
 crate-type = ["cdylib"]
 
 [profile.release]

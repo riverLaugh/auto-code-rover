@@ -376,3 +376,10 @@ class qwen2dot5(OpenaiModel):
             "qwen2.5:32b-instruct-fp8", 4096, 0.0000025, 0.000010, parallel_tool_call=True
         )
         self.note = "Multimodal model. Up to Apr 2023."
+
+class claude3dot7(OpenaiModel):
+    def __init__(self):
+        super().__init__(
+            "claude-3-7-sonnet-20250219", 4096, 0.0000025, 0.000010, parallel_tool_call=True
+        )
+        self.note = "cladue3.7"

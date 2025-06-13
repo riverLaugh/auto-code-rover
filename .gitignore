@@ -162,4 +162,4 @@ cython_debug/
 output/
 EXP/
 Logs/run_logs
-setup
+setup/

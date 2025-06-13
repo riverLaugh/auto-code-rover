@@ -1,0 +1,12 @@
+clap-rs__clap-2534
+clap-rs__clap-2358
+clap-rs__clap-2161
+sharkdp__fd-1394
+sharkdp__fd-1079
+BurntSushi__ripgrep-727
+tokio-rs__tracing-2090
+tokio-rs__tracing-1236
+tokio-rs__tracing-1233
+clap-rs__clap-2771
+rayon-rs__rayon-986
+tokio-rs__bytes-547

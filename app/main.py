@@ -3,6 +3,7 @@ The main driver.
 """
 
 import json
+import os
 import logging
 import platform
 import shutil
@@ -81,6 +82,8 @@ def main():
     config.output_dir = args.output_dir
     if config.output_dir is not None:
         config.output_dir = abspath(config.output_dir)
+    if not os.path.exists(config.output_dir):
+        os.makedirs(config.output_dir)
     num_processes: int = int(args.num_processes)
     # set whether brief or verbose log
     print_stdout: bool = not args.no_print
